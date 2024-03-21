@@ -1,0 +1,68 @@
+{
+    "PromptTemplate": "Write a [[Format]] about '''[[SeedPhrase]]''' in [[Language]] in the style of [[Style]]. Write only the content, no introduction, no explanation, no disclaimer, no translation.",
+    "GeneratorURL": "http://localhost:1234/v1",
+    "GeneratorAPIKey": "not-needed",
+    "GeneratorModel": [
+        "mistralai_mistral-7b-instruct-v0.2",
+        "openai_gpt-4",
+        "openai_gpt-35-turbo"
+    ],
+    "Components": {
+      "Language": {
+        "English": {
+          "Style": [
+            "NYT",
+            "CNN",
+            "BBC",
+            "Fox News",
+            "WSJ"
+          ],
+          "ISOLanguage": [
+            "en"
+          ]
+        },
+        "German": {
+          "Style": [
+            "Spiegel",
+            "BILD",
+            "FAZ",
+            "SZ",
+            "Handelsblatt"
+          ],
+          "ISOLanguage": [
+            "de"
+          ]
+        },
+        "French": {
+          "Style": [
+            "France 24",
+            "Le Monde",
+            "Le Figaro",
+            "Libération",
+            "Le Parisien"
+          ],
+          "ISOLanguage": [
+            "fr"
+          ]
+        },
+        "Spanish": {
+          "Style": [
+            "El País",
+            "Marca",
+            "El Mundo",
+            "ABC",
+            "La Vanguardia"
+          ],
+          "ISOLanguage": [
+            "es"
+          ]
+        }
+      },
+      "Format": [
+        "tweet",
+        "headline",
+        "short article"
+      ]
+    }
+  }
+  
