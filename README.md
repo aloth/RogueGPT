@@ -2,9 +2,11 @@
 
 RogueGPT is a research project focused on exploring the boundaries of generative AI in the context of (fake) news fragment generation. This early work-in-progress version is designed to create machine-generated news content, aiming to challenge perceptions and spark discussions on the authenticity of digital content.
 
+If you're curious to explore some of the generated (fake) news by RogueGPT and want to participate in evaluating the authenticity of these news pieces, we warmly invite you to join our interactive survey at [https://judgegpt.streamlit.app/](https://judgegpt.streamlit.app/).
+
 ## Project Overview
 
-The project comprises a Streamlit application (`app.py`) that allows users to input details for generating news fragments using OpenAI's GPT models. It includes functionality for both manual data entry and automated news generation based on a set of predefined parameters loaded from `prompt_engine.json`. The generated content is intended for use in our sister project, JudgeGPT, where participants are asked to assess whether they perceive the content as machine or human-generated.
+The project comprises a Streamlit application (`app.py`) that allows users to input details for generating news fragments using OpenAI's GPT models. It includes functionality for both manual data entry and automated news generation based on a set of predefined parameters loaded from `prompt_engine.json`. The generated content is intended for use in our sister project, [JudgeGPT](https://github.com/aloth/JudgeGPT), where participants are asked to assess whether they perceive the content as machine or human-generated.
 
 ## About the Name: RogueGPT
 
@@ -37,7 +39,7 @@ The application has two main tabs:
 - **Manual Data Entry**: Allows users to manually input details for a news fragment, including content, source, and metadata.
 - **Generator**: Utilizes the `prompt_engine.json` configuration to generate news fragments automatically based on selected criteria.
 
-Generated fragments can be saved to a MongoDB database and are primarily meant to serve as input for the JudgeGPT project.
+Generated fragments can be saved to a MongoDB database and are primarily meant to serve as input for the [JudgeGPT](https://github.com/aloth/JudgeGPT) project.
 
 ## Project Status
 
