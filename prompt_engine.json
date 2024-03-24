@@ -3,6 +3,7 @@
     "GeneratorURL": "http://localhost:1234/v1",
     "GeneratorAPIKey": "not-needed",
     "GeneratorModel": [
+        "meta_llama-2-13b-chat",
         "google_gemma-7b-it",
         "mistralai_mistral-7b-instruct-v0.2",
         "openai_gpt-4",
