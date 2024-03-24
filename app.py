@@ -255,10 +255,10 @@ def automatic_news_generation_ui():
 # UI to input news fragment details
 st.title("News Ingestion")
 
-tab_manual, tab_generaor = st.tabs(["Manual Data Entry", "Generator"])
-
-with tab_manual:
-    manual_data_entry_ui()
+tab_generaor, tab_manual = st.tabs(["Generator", "Manual Data Entry"])
 
 with tab_generaor:
     automatic_news_generation_ui()
+
+with tab_manual:
+    manual_data_entry_ui()
