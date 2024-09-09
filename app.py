@@ -1,5 +1,6 @@
 import streamlit as st
 from openai import OpenAI
+from openai import AzureOpenAI
 import json
 import uuid
 import re
@@ -11,24 +12,47 @@ from pymongo.server_api import ServerApi
 # Constants
 CONFIG_FILE = 'prompt_engine.json'
 
-def generate_fragment(prompt, base_url, api_key, model):
+def generate_fragment(prompt, base_url, api_key, api_type, api_version=None, model=None):
     """
-    Generates a news fragment using OpenAI's GPT model and saves it to the database.
+    Generates a news fragment using OpenAI's or Azure OpenAI's GPT model and returns the generated response.
 
     Args:
         prompt (str): The prompt to generate the news fragment.
-        user_generator_url (str): The URL for the generator API.
-        user_generator_api_key (str): The API key for authentication.
-        user_generator_model (str): The model identifier.
-    """
-    client = OpenAI(base_url=base_url, api_key=api_key)
+        base_url (str): The base URL for the OpenAI or Azure OpenAI API.
+        api_key (str): The API key for authentication.
+        api_type (str): Specifies the type of API, either 'OpenAI' or 'AzureOpenAI'.
+        api_version (str, optional): The API version (only needed for Azure OpenAI). Defaults to None.
+        model (str, optional): The model identifier for the GPT model (e.g., 'gpt-4'). Defaults to None.
 
+    Returns:
+        str: The generated response from the model.
+    """
+
+    # Initialize the client based on the API type (OpenAI or AzureOpenAI)
+    if api_type == "OpenAI":
+        client = OpenAI(
+            base_url=base_url,
+            api_key=api_key
+        )
+    elif api_type == "AzureOpenAI":
+        client = AzureOpenAI(
+            api_key=api_key,  
+            api_version=api_version,
+            azure_endpoint=base_url
+        )
+    else:
+        raise ValueError("Invalid API type. Must be either 'OpenAI' or 'AzureOpenAI'.")
+
+    # Create a streaming completion request with the provided prompt and model
     stream = client.chat.completions.create(
-        model=model,
-        messages=[{"role": "user", "content": prompt}],
-        stream=True,
+        model = model,
+        messages = [{"role": "user", "content": prompt}],
+        stream = True
     )
+
+    # Process and return the streamed response
     generated_response = st.write_stream(stream)
+
     return generated_response
 
 def save_fragment(fragment):
@@ -175,6 +199,8 @@ def automatic_news_generation_ui():
     prompt_template = data["PromptTemplate"]
     generator_url = data["GeneratorURL"]
     generator_api_key = data["GeneratorAPIKey"]
+    generator_api_type = data["GeneratorAPIType"]
+    generator_api_version = data["GeneratorAPIVersion"]
     generator_model = data["GeneratorModel"]
 
     components = data["Components"]
@@ -216,6 +242,10 @@ def automatic_news_generation_ui():
 
     user_generator_api_key = st.text_input("Generator API Key", generator_api_key)
 
+    user_generator_api_type = st.selectbox("Generator API Type", generator_api_type)
+
+    user_generator_api_version = st.selectbox("Generator API Version", generator_api_version)
+
     user_generator_model = st.selectbox("Generator Model", generator_model)
 
     st.subheader("Meta data")
@@ -236,7 +266,15 @@ def automatic_news_generation_ui():
                 prompt_filled = prompt_filled.replace(f"[[{key}]]", value)
 
             st.write("Using prompt: ", prompt_filled)
-            generated_fragment = generate_fragment(prompt_filled, user_generator_url, user_generator_api_key, user_generator_model)
+
+            generated_fragment = generate_fragment(
+                prompt = prompt_filled,
+                base_url = user_generator_url,
+                api_key = user_generator_api_key,
+                api_type = user_generator_api_type,
+                api_version = user_generator_api_version,
+                model = user_generator_model
+            )
 
             combination["FragmentID"] = uuid.uuid4().hex
             combination["Content"] = generated_fragment

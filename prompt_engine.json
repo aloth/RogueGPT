@@ -2,13 +2,23 @@
     "PromptTemplate": "Write a [[Format]] about '''[[SeedPhrase]]''' in [[Language]] in the style of [[Style]]. Write only the content, no introduction, no explanation, no disclaimer, no translation.",
     "GeneratorURL": "http://localhost:1234/v1",
     "GeneratorAPIKey": "not-needed",
+    "GeneratorAPIType": [
+        "OpenAI",
+        "AzureOpenAI"
+    ],
+    "GeneratorAPIVersion": [
+        "n/a",
+        "2023-03-15-preview"
+    ],
     "GeneratorModel": [
         "microsoft_Phi-3-mini-4k-instruct",
         "meta_llama-2-13b-chat",
         "google_gemma-7b-it",
         "mistralai_mistral-7b-instruct-v0.2",
-        "openai_gpt-4",
-        "openai_gpt-35-turbo"
+        "openai_gpt-35-turbo",
+        "openai_gpt-4_0613",
+        "openai_gpt-4-turbo_2024-04-09",
+        "openai_gpt-4o_2024-08-06"
     ],
     "Components": {
       "Language": {
