@@ -5,14 +5,21 @@ import json
 import uuid
 import re
 import itertools
+from typing import Dict, List, Optional, Union
 from datetime import datetime
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
+__name__ = "RogueGPT"
+__version__ = "0.9.2"
+__author__ = "Alexander Loth"
+__email__ = "Alexander.Loth@microsoft.com"
+__report_a_bug__ = "https://github.com/aloth/RogueGPT/issues"
+
 # Constants
 CONFIG_FILE = 'prompt_engine.json'
 
-def generate_fragment(prompt, base_url, api_key, api_type, api_version=None, model=None):
+def generate_fragment(prompt: str, base_url: str, api_key: str, api_type: str, api_version: str = None, model: str = None) -> str:
     """
     Generates a news fragment using OpenAI's or Azure OpenAI's GPT model and returns the generated response.
 
@@ -26,6 +33,9 @@ def generate_fragment(prompt, base_url, api_key, api_type, api_version=None, mod
 
     Returns:
         str: The generated response from the model.
+
+    Raises:
+        ValueError: If an invalid API type is provided.
     """
 
     # Initialize the client based on the API type (OpenAI or AzureOpenAI)
@@ -55,12 +65,15 @@ def generate_fragment(prompt, base_url, api_key, api_type, api_version=None, mod
 
     return generated_response
 
-def save_fragment(fragment):
+def save_fragment(fragment: dict) -> None:
     """
     Saves a news fragment to the MongoDB database.
     
     Args:
         fragment (dict): The news fragment to be saved.
+
+    Raises:
+        Exception: If there's an error while saving the fragment to the database.
     """
     try:
         with MongoClient(st.secrets["mongo"]["connection"], server_api=ServerApi('1')) as client:
@@ -71,12 +84,12 @@ def save_fragment(fragment):
     except Exception as e:
         st.error(f"Error saving fragment: {str(e)}")
 
-def render_ui(component_dict, key_prefix=""):
+def render_ui(component_dict: dict, key_prefix: str = "") -> dict:
     """
     Dynamically renders UI components based on the configuration provided in the components dictionary.
 
     Args:
-        components (dict): A dictionary containing the UI components configuration.
+        component_dict (dict): A dictionary containing the UI components configuration.
         key_prefix (str): A prefix added to the keys to ensure uniqueness (useful in recursion).
 
     Returns:
@@ -98,9 +111,16 @@ def render_ui(component_dict, key_prefix=""):
             user_selections[key] = selected_options
     return user_selections
     
-def collect_keys(component_dict, collected_keys=[]):
+def collect_keys(component_dict: dict, collected_keys: list = []) -> list:
     """
     Recursively collects all keys from nested dictionaries.
+
+    Args:
+        component_dict (dict): The dictionary to collect keys from.
+        collected_keys (list, optional): A list to store collected keys. Defaults to an empty list.
+
+    Returns:
+        list: A list of all collected keys.
     """
     for key, value in component_dict.items():
         collected_keys.append(key)
@@ -109,9 +129,15 @@ def collect_keys(component_dict, collected_keys=[]):
                 collect_keys(value[sub_key], collected_keys)
     return collected_keys
 
-def fix_structure(selections):
+def fix_structure(selections: dict) -> dict:
     """
     Ensures all selections are in list form.
+
+    Args:
+        selections (dict): A dictionary of user selections.
+
+    Returns:
+        dict: A dictionary with all values converted to lists.
     """
     corrected_selections = {}
     for key, value in selections.items():
@@ -121,9 +147,11 @@ def fix_structure(selections):
             corrected_selections[key] = [value]
     return corrected_selections
 
-def manual_data_entry_ui():
+def manual_data_entry_ui() -> None:
     """
     Renders UI for manual data entry of news fragments.
+
+    This function doesn't return anything but updates the Streamlit UI.
     """
     fragment_id = uuid.uuid4().hex
     st.header("Input News Details")
@@ -181,9 +209,11 @@ def manual_data_entry_ui():
         save_fragment(fragment)
         st.rerun()
 
-def automatic_news_generation_ui():
+def automatic_news_generation_ui() -> None:
     """
     Renders UI for automatic news generation and handles the logic for generating news fragments.
+
+    This function doesn't return anything but updates the Streamlit UI and generates news fragments.
     """
     st.header("Automatic News Generation")
 
