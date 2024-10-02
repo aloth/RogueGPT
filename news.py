@@ -4,24 +4,49 @@ import requests
 
 from google import get_google_trends
 
-key = 'c0a7fb769ee4458cb4ec3fcc53e89dd7'
-# https://newsapi.org/docs/get-started
+from newsapi import NewsApiClient
 
-# Get the news for a given keyword and a particular day (default: yesterday's date)
+
+key = 'c0a7fb769ee4458cb4ec3fcc53e89dd7'
+api = NewsApiClient(api_key=key)
+
+class Article:
+    def __init__(self, title, description, url):
+        self.title = title
+        self.description = description
+        self.url = url
+
+    def generate_prompt(self):
+        return f"Write a {self.url.split('/', 3)[2]} title similar to {self.title}.\nAbout '{self.description}' with fake information"
+
+    def pretty_print(self):
+        return "NEWS\n" + self.title + '\n\n' + self.description + '\n From: ' + self.url
+
 def get_news(
         keyword,
-        date=(datetime.today() - timedelta(days = 1)).strftime('%Y-%m-%d'),
-        source='bbc-news',
+        lang="en",
+        source="bbc.co.uk,yahoo.com",
 ):
-    print(f"Getting news from {date} for {keyword} from source {source}")
-    url = ('https://newsapi.org/v2/everything?'
-           f'q={keyword}&'
-           f'from={date}&'
-           'sortBy=popularity&'
-           f'sources={source}&'
-           f'apiKey={key}')
-    response = requests.get(url)
-    return response.json()
+    print(f"Generating an article for trend {keyword} in language '{lang}' from sources {source}\n\n\n")
+    articles = api.get_everything(
+        q=keyword,
+        language=lang,
+        # from_param=datetime.today().strftime('%Y-%m-%d'),
+        sort_by='relevancy',
+        domains=source,
+    )
+    print(articles)
+    article = Article(
+        title=articles['articles'][0]['title'],
+        description=articles['articles'][0]['description'].replace('.', '.\n'),
+        url=articles['articles'][0]['url'],
+    )
+    return article
 
-google_trend = get_google_trends().values[1][0]
-print(get_news(google_trend, source='cnn')['articles'][0]['content'])
+google_trend = get_google_trends().values[4][0]
+
+article = get_news(google_trend)
+
+print(article.pretty_print())
+print("\n\nGenerating prompt!")
+print(article.generate_prompt())
