@@ -1,3 +1,12 @@
+# Vision BFN
+
+**Breaking** __FAKE__ **News**
+
+We will try to integrate streams of Breaking News into RogueGPT
+Examples are Twitter Trends, News from Reddit, and data we can get from RSS feeds
+The goal is to two-fold: On the one hand we want to **automate** the input for the SeedPhrase of RogueGPT.
+On the other hand we want to explore the potential of **quickly** generating Fake News about topics that are moving people right now.
+
 # RogueGPT - (Fake) News Generator
 
 RogueGPT is a research project focused on exploring the boundaries of generative AI in the context of (fake) news fragment generation. This early work-in-progress version is designed to create machine-generated news content, aiming to challenge perceptions and spark discussions on the authenticity of digital content.
