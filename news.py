@@ -29,18 +29,21 @@ def get_news(
         sort_by='relevancy',
         domains=source,
     )
-    print(articles)
-    article = Article(
-        title=articles['articles'][0]['title'],
-        description=articles['articles'][0]['description'].replace('.', '.\n'),
-        url=articles['articles'][0]['url'],
-    )
-    return article
+    if len(articles['articles']) != 0:
+        article = Article(
+            title=articles['articles'][0]['title'],
+            description=articles['articles'][0]['description'].replace('.', '.\n'),
+            url=articles['articles'][0]['url'],
+        )
+        return article
+    else:
+        print("no articles found")
+        return None
 
 google_trend = get_google_trends()[0]
 
 article = get_news(google_trend)
-
-print(article.pretty_print())
-print("\n\nGenerating prompt!")
-print(article.generate_prompt())
+if article != None:
+    print(article.pretty_print())
+    print("\n\nGenerating prompt!")
+    print(article.generate_prompt())
