@@ -7,4 +7,4 @@ datetime
 uuid
 openai
 pytrends
-NewsApiClient
+newsapi-python
