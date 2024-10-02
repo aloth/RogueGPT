@@ -6,3 +6,5 @@ streamlit-javascript
 datetime
 uuid
 openai
+pytrends
+NewsApiClient
