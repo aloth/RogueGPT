@@ -16,6 +16,20 @@ class Article:
     def pretty_print(self):
         return "NEWS\n" + self.title + '\n\n' + self.description + '\n From: ' + self.url
 
+    def convert_url(self):
+        if self.url.contains('nytimes.com'): # NYT
+            return 'NYT'
+        elif self.url.contains('cnn.com'): # CNN
+            return 'CNN'
+        elif self.url.contains('bbc.co.uk'): # BBC
+            return 'BBC'
+        elif self.url.contains('foxnews.com'): # Fox News
+            return 'Fox News'
+        elif self.url.contains('wsj.com'): # WSJ
+            return 'WSJ'
+        else:
+            return 'Unknown source'
+
 def get_news(
         keyword,
         lang="en",
