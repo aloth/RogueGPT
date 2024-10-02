@@ -1,11 +1,5 @@
-from datetime import datetime
-from datetime import timedelta
-import requests
-
 from google import get_google_trends
-
 from newsapi import NewsApiClient
-
 
 key = 'c0a7fb769ee4458cb4ec3fcc53e89dd7'
 api = NewsApiClient(api_key=key)
@@ -43,7 +37,7 @@ def get_news(
     )
     return article
 
-google_trend = get_google_trends().values[4][0]
+google_trend = get_google_trends()[0]
 
 article = get_news(google_trend)
 
