@@ -8,3 +8,4 @@ uuid
 openai
 pytrends
 newsapi-python
+praw
