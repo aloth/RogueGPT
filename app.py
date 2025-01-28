@@ -11,9 +11,10 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
 __name__ = "RogueGPT"
-__version__ = "0.9.2"
+__version__ = "0.9.3"
 __author__ = "Alexander Loth"
 __email__ = "Alexander.Loth@microsoft.com"
+__research_paper__ = "https://arxiv.org/abs/2404.03021"
 __report_a_bug__ = "https://github.com/aloth/RogueGPT/issues"
 
 # Constants
@@ -321,7 +322,10 @@ def automatic_news_generation_ui() -> None:
 
 
 # UI to input news fragment details
-st.title("News Ingestion")
+st.title("RogueGPT: News Ingestion")
+
+st.markdown("*Disclaimer:* [RogueGPT](https://github.com/aloth/RogueGPT/) is part of the [JudgeGPT research project](https://github.com/aloth/JudgeGPT/).")
+st.markdown("Learn more about the impact of Generative AI on fake news through our [open access paper](" + __research_paper__ + ").")
 
 tab_generaor, tab_manual = st.tabs(["Generator", "Manual Data Entry"])
 
