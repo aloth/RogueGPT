@@ -20,7 +20,12 @@
         "openai_gpt-4-turbo_2024-04-09",
         "openai_gpt-4o_2024-08-06",
         "openai_o1-mini",
-        "openai_o1-preview"
+        "openai_o1-preview",
+        "openai_o1",
+        "openai_o1-pro",
+        "openai_o3-mini",
+        "openai_o3-mini-high",
+        "deepseek_r1"
     ],
     "Components": {
       "Language": {
