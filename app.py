@@ -11,7 +11,7 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
 __name__ = "RogueGPT"
-__version__ = "0.9.3"
+__version__ = "1.0.0"
 __author__ = "Alexander Loth"
 __email__ = "Alexander.Loth@microsoft.com"
 __research_paper__ = "https://arxiv.org/abs/2404.03021"
