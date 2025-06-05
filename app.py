@@ -1,6 +1,6 @@
 import streamlit as st
-from openai import OpenAI
-from openai import AzureOpenAI
+from openai import OpenAI, AzureOpenAI
+from openai import APIConnectionError, RateLimitError, AuthenticationError, APIError # Import specific exceptions
 import json
 import uuid
 import re
@@ -11,7 +11,7 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
 __name__ = "RogueGPT"
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __author__ = "Alexander Loth"
 __email__ = "Alexander.Loth@microsoft.com"
 __research_paper__ = "https://arxiv.org/abs/2404.03021"
@@ -33,38 +33,55 @@ def generate_fragment(prompt: str, base_url: str, api_key: str, api_type: str, a
         model (str, optional): The model identifier for the GPT model (e.g., 'gpt-4'). Defaults to None.
 
     Returns:
-        str: The generated response from the model.
+        str: The generated response from the model, or an empty string if an error occurs.
 
     Raises:
         ValueError: If an invalid API type is provided.
     """
 
-    # Initialize the client based on the API type (OpenAI or AzureOpenAI)
-    if api_type == "OpenAI":
-        client = OpenAI(
-            base_url=base_url,
-            api_key=api_key
+    client = None # Initialize client to None
+    try:
+        # Initialize the client based on the API type (OpenAI or AzureOpenAI)
+        if api_type == "OpenAI":
+            client = OpenAI(
+                base_url=base_url,
+                api_key=api_key
+            )
+        elif api_type == "AzureOpenAI":
+            client = AzureOpenAI(
+                api_key=api_key,
+                api_version=api_version,
+                azure_endpoint=base_url
+            )
+        else:
+            # This error is critical for client initialization.
+            raise ValueError("Invalid API type. Must be either 'OpenAI' or 'AzureOpenAI'.")
+
+        # Create a streaming completion request with the provided prompt and model
+        stream = client.chat.completions.create(
+            model=model,
+            messages=[{"role": "user", "content": prompt}],
+            stream=True
         )
-    elif api_type == "AzureOpenAI":
-        client = AzureOpenAI(
-            api_key=api_key,  
-            api_version=api_version,
-            azure_endpoint=base_url
-        )
-    else:
-        raise ValueError("Invalid API type. Must be either 'OpenAI' or 'AzureOpenAI'.")
 
-    # Create a streaming completion request with the provided prompt and model
-    stream = client.chat.completions.create(
-        model = model,
-        messages = [{"role": "user", "content": prompt}],
-        stream = True
-    )
+        # Process and return the streamed response
+        generated_response = st.write_stream(stream)
+        return generated_response
 
-    # Process and return the streamed response
-    generated_response = st.write_stream(stream)
-
-    return generated_response
+    except APIConnectionError as e:
+        st.error(f"Failed to connect to the API: {e}")
+    except RateLimitError as e:
+        st.error(f"API request exceeded rate limit: {e}")
+    except AuthenticationError as e:
+        st.error(f"API authentication failed (check your API key): {e}")
+    except APIError as e:  # Catch other OpenAI specific errors
+        st.error(f"The API returned an error: {e}")
+    except ValueError as e: # Catch the ValueError we raised for invalid API type
+        st.error(str(e))
+    except Exception as e:  # Catch any other unexpected errors
+        st.error(f"An unexpected error occurred during fragment generation: {str(e)}")
+    
+    return "" # Return an empty string if any of the caught exceptions occurred
 
 def save_fragment(fragment: dict) -> None:
     """
