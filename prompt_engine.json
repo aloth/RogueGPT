@@ -19,6 +19,7 @@
         "openai_gpt-4_0613",
         "openai_gpt-4-turbo_2024-04-09",
         "openai_gpt-4o_2024-08-06",
+        "openai_gpt-5-bench-chatcompletions-gpt41-api-ev3",
         "openai_o1-mini",
         "openai_o1-preview",
         "openai_o1",
