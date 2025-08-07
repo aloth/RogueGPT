@@ -1,108 +1,144 @@
-# RogueGPT - (Fake) News Generator
+# RogueGPT: The Stimulus Generation Engine for News Authenticity Research
+[![arXiv](https://img.shields.io/badge/arXiv-2404.03021-B31B1B.svg)](https://arxiv.org/abs/2404.03021)
+[![Status](https://img.shields.io/badge/status-active%20%26%20evolving-orange.svg)](https://github.com/aloth/RogueGPT)
+[![License](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![GitHub Stars](https://img.shields.io/github/stars/aloth/RogueGPT?style=social)](https://github.com/aloth/RogueGPT/stargazers)
 
-RogueGPT is a research project focused on exploring the boundaries of generative AI in the context of (fake) news fragment generation. This early work-in-progress version is designed to create machine-generated news content, aiming to challenge perceptions and spark discussions on the authenticity of digital content.
+## The Research Mandate: Why RogueGPT Exists
+To empirically study how humans perceive AI-generated news, researchers require a reliable and highly controllable source of stimuli. RogueGPT serves as the dedicated **stimulus generation engine** for the JudgeGPT research project. Its purpose is to create a diverse and methodologically sound dataset of news fragments under specific, reproducible conditions.
 
-🔍 **Want to test your judgment?** If you're interested in seeing this application in action and would like to participate in the evaluation of fake news, please visit our interactive survey at [https://judgegpt.streamlit.app/](https://judgegpt.streamlit.app/). A port to React is currently in development, and can be beta tested at [https://aka.ms/JudgeGPT](https://aka.ms/JudgeGPT).
+This project is one half of a complete research pipeline. While its sister project, **[JudgeGPT](https://github.com/aloth/JudgeGPT)**, is the data collection platform where humans evaluate news authenticity, RogueGPT is the tool that creates the very content to be evaluated. This two-part structure is essential for maintaining experimental control and ensuring the integrity of the research findings, as outlined in our foundational paper, *"Blessing or curse? A survey on the Impact of Generative AI on Fake News"*.
 
-🧠 **Curious about spotting fake news?** If you want to learn more about spotting fake news, especially during election periods, check out this [blog post](https://alexloth.com/how-to-spot-fake-news-this-election-test-your-detection-skills/) for tips and insights.
+## The Research Pipeline: From Generation to Judgment
+RogueGPT is the starting point in our end-to-end experimental workflow. It provides a user interface for researchers to generate news fragments with precise control over numerous variables. This process allows us to systematically investigate how different factors influence human perception of authenticity.
 
-## Project Overview
+### The Experimental Workflow
+The process flows from controlled generation to human judgment, creating a rich dataset that links specific content characteristics to perception scores:
 
-The project comprises a Streamlit application (`app.py`) that allows users to input details for generating news fragments using OpenAI's GPT models. It includes functionality for both manual data entry and automated news generation based on a set of predefined parameters loaded from `prompt_engine.json`. The generated content is intended for use in our sister project, [JudgeGPT](https://github.com/aloth/JudgeGPT), where participants are asked to assess whether they perceive the content as machine or human-generated.
+1.  **Controlled Stimulus Generation (`RogueGPT`):** A researcher utilizes the `RogueGPT` interface to generate news fragments. The generation process is highly controlled, using specific variables defined in a configuration file (`prompt_engine.json`). These variables include parameters such as news outlet `Style` (e.g., 'NYT', 'BILD'), `Format` ('tweet', 'short article'), `Language` ('en', 'de'), and the underlying `GeneratorModel` (e.g., 'openai_gpt-4-turbo_2024-04-09').
 
-## About the Name: RogueGPT
+2.  **Data Storage (MongoDB):** Each generated fragment, along with its full metadata (the parameters used to create it), is stored in a shared MongoDB database. This is handled by the `save_fragment` function within RogueGPT's codebase, which uses the PyMongo library to interact with the database.
 
-The name RogueGPT carries a significant meaning within the context of this project. The term "GPT" is used pars pro toto, a rhetorical device where the name of a part of something is used to refer to the whole. In our case, "GPT" refers not only to OpenAI's Generative Pre-trained Transformer models but also broadly encompasses a wider array of Large Language Models (LLMs). This naming choice signifies that while the project currently utilizes GPT models, it is not limited to them and is open to integrating other LLMs in the future. The prefix "Rogue" is deliberately chosen to highlight the contentious nature of using machine learning for the production of news content, which is often seen as a problematic issue. It serves as an allusion to ChatGPT, suggesting that RogueGPT takes a divergent, perhaps more controversial, path by engaging directly with the generation of (potentially fake) news fragments.
+3.  **Human Data Collection (`JudgeGPT`):** A participant accesses the `JudgeGPT` survey application. The application retrieves a fragment generated by RogueGPT from the MongoDB collection to present to the user.
 
-### Key Components
+4.  **Judgment and Analysis:** The participant reads the news fragment and uses sliders to rate its perceived authenticity and origin. This judgment data is then saved back to the database, creating a comprehensive record that links specific generation parameters to quantitative human perception scores.
 
-- `app.py`: The main Python script that runs the Streamlit application, handling user input, content generation, and database operations.
+## Getting Involved: A Guide for Developers and Researchers
+RogueGPT is a tool for researchers and developers interested in the generative side of our experimental setup.
 
-- `prompt_engine.json`: A configuration file that defines the structure for automated news generation, including templates, styles, and components for different languages.
+| **Audience** | **Primary Goal** | **Action** |
+| :--- | :--- | :--- |
+| **Researchers** | Understand the generation methodology or use the tool for your own research. | **[Read the Paper](https://arxiv.org/abs/2404.03021)** <br> **[✉️ Contact Us](mailto:Alexander.Loth@microsoft.com)** <br> **[See Citation](#citation)** |
+| **Developers** | Contribute code, add new models, fix bugs, or suggest features. | **[Fork the Repo](https://github.com/aloth/RogueGPT/fork)** <br> **[🐞 Open an Issue](https://github.com/aloth/RogueGPT/issues)** <br> **[See Contributing Guide](#contributing)** |
+| **General Public** | To evaluate the news generated by this tool, please visit our sister project. | **[Participate in the JudgeGPT Survey](https://judgegpt.streamlit.app/)** |
 
-- `requirements.txt`: Lists the Python package dependencies necessary for running the application.
+## 📢 Calling All Experts: Share Your Insights!
+Are you an expert in AI, policy, or journalism? We are conducting a follow-up study to gather expert perspectives on the risks and mitigation strategies related to AI-driven disinformation. Your insights are invaluable for this research.
 
-- Database integration for data storage.
+Please consider contributing by participating in our 15-minute survey:
+**➡️ [https://forms.gle/EUdbkEtZpEuPbVVz5](https://forms.gle/EUdbkEtZpEuPbVVz5)**
 
-## Installation
+* **Purpose**: This survey explores expert perceptions of generative-AI–driven disinformation for an academic research project.
+* **Data Use**: All responses will be treated as confidential and reported in an anonymised, aggregated format by default. At the end of the survey, you will have the option to be publicly acknowledged for your contribution. All data will be used for academic purposes only.
+* **Time**: Approximately 15 minutes.
 
-To run RogueGPT locally, follow these steps:
+## Technical Deep Dive
+This section provides a comprehensive guide for developers and technical users who wish to run, inspect, or contribute to the RogueGPT project locally.
 
-1. Clone this repository:
-   ```
-   git clone https://github.com/aloth/RogueGPT.git
-   cd RogueGPT
-   ```
+### System Architecture
+The project is built with the following components:
 
-2. Install the required dependencies listed in `requirements.txt` using pip:
-   ```
-   pip install -r requirements.txt
-   ```
+* **Frontend/Backend:** A **Streamlit** application (`app.py`) written in Python provides the user interface for both manual and automated news fragment generation.
+* **Configuration:** A `prompt_engine.json` file defines the parameters for automated generation, including prompt templates, styles, languages, and target generative models.
+* **Database:** A **MongoDB** (NoSQL) database is used to store the generated news fragments and their associated metadata.
 
-3. Launch the Streamlit application:
-   ```
-   streamlit run app.py
-   ```
+### Local Installation and Setup
+Follow these steps to set up the project on your local machine.
 
-## Usage
+1.  **Prerequisites**
+    * Python 3.8+
+    * pip package manager
+    * Git
 
-The application has two main tabs:
-- **Manual Data Entry**: Allows users to manually input details for a news fragment, including content, source, and metadata.
-- **Generator**: Utilizes the `prompt_engine.json` configuration to generate news fragments automatically based on selected criteria.
+2.  **Clone the Repository**
+    ```bash
+    git clone [https://github.com/aloth/RogueGPT.git](https://github.com/aloth/RogueGPT.git)
+    cd RogueGPT
+    ```
 
-Generated fragments can be saved to a MongoDB database and are primarily meant to serve as input for the [JudgeGPT](https://github.com/aloth/JudgeGPT) project.
+3.  **Set Up a Virtual Environment (Recommended)**
+    ```bash
+    # For macOS/Linux
+    python3 -m venv venv
+    source venv/bin/activate
 
-## Project Status
+    # For Windows
+    python -m venv venv
+    .\venv\Scripts\activate
+    ```
 
-RogueGPT is in its early stages and is continuously evolving. The output generated by this project is experimental and intended for research purposes within the scope of understanding AI's impact on news authenticity.
+4.  **Install Dependencies**
+    ```bash
+    pip install -r requirements.txt
+    ```
+    Key dependencies include `streamlit`, `pymongo`, and `openai`.
+
+5.  **Configure Environment Variables**
+    The application requires a connection string to a MongoDB database and potentially API keys for generative models. It is best practice to manage these secrets using environment variables.
+
+### Running the Application
+Once the setup is complete, launch the Streamlit application:
+```bash
+streamlit run app.py
+```
+The application will open in your default web browser, presenting two tabs: "Generator" for automated creation and "Manual Data Entry" for direct input.
+
+## Project Roadmap: A Research-Driven Agenda
+The roadmap for RogueGPT is focused on enhancing its capabilities as a state-of-the-art stimulus generation engine.
+
+### Expanding Modalities: Beyond Text to Deepfakes
+To support the broader research goals of the JudgeGPT project, a key priority is to expand RogueGPT's capabilities to include the generation and incorporation of **images and other visual media**. This will enable the study of multimedia and "deepfake" disinformation.
+
+### Enhancing Realism and Deception
+To keep pace with the "technological arms race," the research must test human perception against an ever-wider array of sophisticated models. The roadmap includes the integration of a greater variety of generative models, such as **BERT, T5, and other emerging LLMs**, allowing for more nuanced and diverse content generation.
+
+### Building Trust and Mitigation Systems
+Future work includes building a **content verification layer** and integrating with established **fact-checking services**. This would allow RogueGPT to not only generate content but also to annotate it with veracity scores, enabling new lines of research into misinformation mitigation and "inoculation" theories.
+
+## Citation
+If you use RogueGPT or its underlying research in your work, please cite our foundational paper:
+
+```bibtex
+@misc{loth2024blessing,
+      title={Blessing or curse? A survey on the Impact of Generative AI on Fake News}, 
+      author={Alexander Loth and Martin Kappes and Marc-Oliver Pahl},
+      year={2024},
+      eprint={2404.03021},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+```
 
 ## Contributing
+We welcome contributions from the community! To get involved, please follow these steps:
 
-We welcome contributions to RogueGPT from the community! To get involved:
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1.  Fork the repository.
+2.  Create your feature branch (`git checkout -b feature/AmazingFeature`).
+3.  Commit your changes (`git commit -m 'Add some AmazingFeature'`).
+4.  Push to the branch (`git push origin feature/AmazingFeature`).
+5.  Open a Pull Request.
 
 For major changes, please open an issue first to discuss what you would like to change.
 
-## Future Directions and Unexplored Ideas for RogueGPT
-
-RogueGPT, while already a significant step forward in the exploration of AI-generated content, has numerous avenues for expansion and enhancement. The project's potential growth areas are designed to elevate its capabilities, broaden its impact, and deepen its exploration into the interplay between AI and news creation:
-
-- **Cross-Model Integration**: Expanding beyond GPT, we plan to integrate a variety of generative models such as BERT, T5, and others. This diversification will allow RogueGPT to generate content with distinct writing styles and tonal variations, enabling a more nuanced exploration of how different AI models mimic human news writing across various topics and domains.
-
-- **Content Verification Layer**: We aim to implement an automated fact-checking system that cross-references generated content against a database of trusted sources, such as verified news outlets and public records. This system would not only enhance the integrity of the generated news but also automatically flag and correct any inaccuracies, reducing the potential for the dissemination of false information.
-
-- **Trending Topics Adaptation**: By integrating real-time data feeds, RogueGPT could generate news content on trending topics by scraping the latest data from social media platforms, news aggregators, and search engine trends. This feature would make RogueGPT highly responsive to current events, allowing it to produce relevant and timely news stories that reflect ongoing global developments.
-
-- **Collaborative Editing Tools**: We plan to introduce a suite of collaborative editing tools that allow multiple users to simultaneously edit and refine both AI-generated and human-generated news fragments. These tools would include version control, real-time editing, and comment threads to facilitate seamless teamwork and content curation.
-
-- **Integration with Fact-Checking Services**: Establishing APIs with leading fact-checking organizations such as Snopes, FactCheck.org, and PolitiFact will allow the generated content to be vetted for accuracy and bias. This partnership would not only enhance the credibility of the content produced by RogueGPT but also provide valuable insights into the AI's performance, informing further model refinements.
-
-- **Image Support**: Expanding RogueGPT's capabilities to include the generation or incorporation of images, such as real photos or deepfakes. This would allow users to create multimedia news content, blending text with visuals to produce more engaging and convincing stories.
-
-- **Production Environment**: Transitioning to a robust cloud platform like Microsoft Azure to ensure scalable, secure, and efficient operation of RogueGPT. Azure's AI and machine learning services would also enable more sophisticated data processing and model training, improving the overall performance and reliability of the system.
-
 ## License
-
-RogueGPT is open-source and available under the GNU GPLv3 License. For more details, see the [LICENSE](LICENSE) file in the repository.
+This project is licensed under the GNU General Public License v3.0. See the [LICENSE](LICENSE) file for full details.
 
 ## Acknowledgments
-
-- OpenAI for their groundbreaking GPT models
-- Streamlit for enabling rapid development of our web application
-- MongoDB for robust database solutions
-- The open-source community for invaluable tools and libraries
+This work would not be possible without the foundational technologies and support from:
+* OpenAI for their groundbreaking GPT models.
+* Streamlit for enabling the rapid development of our web application.
+* MongoDB for robust and scalable database solutions.
+* The broader open-source community for providing invaluable tools and libraries.
 
 ## Disclaimer
-
-RogueGPT is an independent research project and is not affiliated with, endorsed by, or in any way officially connected to OpenAI. The use of "GPT" within our project name is purely for descriptive purposes, indicating the use of generative pre-trained transformer models as a core technology in our research. Our project's explorations and findings are our own and do not reflect the views or positions of OpenAI or its collaborators. We are committed to responsible AI research and adhere to ethical guidelines in all aspects of our work, including the generation and analysis of content.
-
----
-
-⭐ If you find RogueGPT interesting, give it a star on GitHub!
-
-📧 For more information, collaborations or to report issues, please [open an issue](https://github.com/aloth/RogueGPT/issues) on our GitHub repository.
+RogueGPT is an independent research project and is not affiliated with, endorsed by, or in any way officially connected to OpenAI. The use of "GPT" within the project name is employed in a *pars pro toto* manner, where it represents the broader class of Generative Pre-trained Transformer models and Large Language Models (LLMs) that are the subject of this research. The project's explorations and findings are its own and do not reflect the views or positions of OpenAI. We are committed to responsible AI research and adhere to ethical guidelines in all aspects of our work.
