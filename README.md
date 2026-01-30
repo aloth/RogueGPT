@@ -1,5 +1,6 @@
 # RogueGPT: The Stimulus Generation Engine for News Authenticity Research
 [![arXiv](https://img.shields.io/badge/arXiv-2404.03021-B31B1B.svg)](https://arxiv.org/abs/2404.03021)
+[![arXiv](https://img.shields.io/badge/arXiv-2601.21963-B31B1B.svg)](https://arxiv.org/abs/2601.21963)
 [![Status](https://img.shields.io/badge/status-active%20%26%20evolving-orange.svg)](https://github.com/aloth/RogueGPT)
 [![License](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![GitHub Stars](https://img.shields.io/github/stars/aloth/RogueGPT?style=social)](https://github.com/aloth/RogueGPT/stargazers)
@@ -8,6 +9,8 @@
 To empirically study how humans perceive AI-generated news, researchers require a reliable and highly controllable source of stimuli. RogueGPT serves as the dedicated **stimulus generation engine** for the JudgeGPT research project. Its purpose is to create a diverse and methodologically sound dataset of news fragments under specific, reproducible conditions.
 
 This project is one half of a complete research pipeline. While its sister project, **[JudgeGPT](https://github.com/aloth/JudgeGPT)**, is the data collection platform where humans evaluate news authenticity, RogueGPT is the tool that creates the very content to be evaluated. This two-part structure is essential for maintaining experimental control and ensuring the integrity of the research findings, as outlined in our foundational paper, *"Blessing or curse? A survey on the Impact of Generative AI on Fake News"*.
+
+Our follow-up research, *"Industrialized Deception: The Collateral Effects of LLM-Generated Misinformation on Digital Ecosystems"* (to appear at WWW '26), extends this work by examining the broader systemic impacts of LLM-generated misinformation on digital platforms and information ecosystems.
 
 ## The Research Pipeline: From Generation to Judgment
 RogueGPT is the starting point in our end-to-end experimental workflow. It provides a user interface for researchers to generate news fragments with precise control over numerous variables. This process allows us to systematically investigate how different factors influence human perception of authenticity.
@@ -106,16 +109,20 @@ To keep pace with the "technological arms race," the research must test human pe
 Future work includes building a **content verification layer** and integrating with established **fact-checking services**. This would allow RogueGPT to not only generate content but also to annotate it with veracity scores, enabling new lines of research into misinformation mitigation and "inoculation" theories.
 
 ## Citation
-If you use RogueGPT or its underlying research in your work, please cite our foundational paper:
+If you use RogueGPT or its underlying research in your work, please cite our paper:
 
 ```bibtex
-@misc{loth2024blessing,
-      title={Blessing or curse? A survey on the Impact of Generative AI on Fake News}, 
-      author={Alexander Loth and Martin Kappes and Marc-Oliver Pahl},
-      year={2024},
-      eprint={2404.03021},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
+@inproceedings{loth2026collateraleffects,
+      author = {Loth, Alexander and Kappes, Martin and Pahl, Marc-Oliver},
+      title = {Industrialized Deception: The Collateral Effects of LLM-Generated Misinformation on Digital Ecosystems},
+      booktitle = {Companion Proceedings of the ACM Web Conference 2026 (WWW '26 Companion)},
+      year = {2026},
+      month = apr,
+      publisher = {ACM},
+      address = {New York, NY, USA},
+      location = {Dubai, United Arab Emirates},
+      url = {https://arxiv.org/abs/2601.21963},
+      note = {To appear. Also available as arXiv:2601.21963}
 }
 ```
 
