@@ -1,6 +1,6 @@
 # RogueGPT: The Stimulus Generation Engine for News Authenticity Research
-[![arXiv](https://img.shields.io/badge/arXiv-2404.03021-B31B1B.svg)](https://arxiv.org/abs/2404.03021)
 [![arXiv](https://img.shields.io/badge/arXiv-2601.21963-B31B1B.svg)](https://arxiv.org/abs/2601.21963)
+[![arXiv](https://img.shields.io/badge/arXiv-2601.22871-B31B1B.svg)](https://arxiv.org/abs/2601.22871)
 [![Status](https://img.shields.io/badge/status-active%20%26%20evolving-orange.svg)](https://github.com/aloth/RogueGPT)
 [![License](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![GitHub Stars](https://img.shields.io/github/stars/aloth/RogueGPT?style=social)](https://github.com/aloth/RogueGPT/stargazers)
@@ -109,20 +109,34 @@ To keep pace with the "technological arms race," the research must test human pe
 Future work includes building a **content verification layer** and integrating with established **fact-checking services**. This would allow RogueGPT to not only generate content but also to annotate it with veracity scores, enabling new lines of research into misinformation mitigation and "inoculation" theories.
 
 ## Citation
-If you use RogueGPT or its underlying research in your work, please cite our paper:
+If you use RogueGPT or its underlying research in your work, please cite our papers:
 
 ```bibtex
 @inproceedings{loth2026collateraleffects,
-      author = {Loth, Alexander and Kappes, Martin and Pahl, Marc-Oliver},
-      title = {Industrialized Deception: The Collateral Effects of LLM-Generated Misinformation on Digital Ecosystems},
-      booktitle = {Companion Proceedings of the ACM Web Conference 2026 (WWW '26 Companion)},
-      year = {2026},
-      month = apr,
-      publisher = {ACM},
-      address = {New York, NY, USA},
-      location = {Dubai, United Arab Emirates},
-      url = {https://arxiv.org/abs/2601.21963},
-      note = {To appear. Also available as arXiv:2601.21963}
+    author = {Loth, Alexander and Kappes, Martin and Pahl, Marc-Oliver},
+    title = {Industrialized Deception: The Collateral Effects of LLM-Generated Misinformation on Digital Ecosystems},
+    booktitle = {Companion Proceedings of the ACM Web Conference 2026 (WWW '26 Companion)},
+    year      = {2026},
+    month     = apr,
+    publisher = {ACM},
+    address   = {New York, NY, USA},
+    location  = {Dubai, United Arab Emirates},
+    DOI       = {10.1145/3774905.3795471},
+    url = {https://arxiv.org/abs/2601.21963},
+    note      = {To appear. Also available as arXiv:2601.21963}
+}
+
+@inproceedings{loth2026eroding,
+    author    = {Loth, Alexander and Kappes, Martin and Pahl, Marc-Oliver},
+    title     = {Eroding the Truth-Default: A Causal Analysis of Human Susceptibility to Foundation Model Hallucinations and Disinformation in the Wild},
+    booktitle = {Companion Proceedings of the ACM Web Conference 2026 (WWW '26 Companion)},
+    year      = {2026},
+    month     = apr,
+    publisher = {ACM},
+    address   = {New York, NY, USA},
+    location  = {Dubai, United Arab Emirates},
+    url       = {https://arxiv.org/abs/2601.22871},
+    note      = {To appear. Also available as arXiv:2601.22871}
 }
 ```
 
