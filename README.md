@@ -5,6 +5,10 @@
 [![License](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![GitHub Stars](https://img.shields.io/github/stars/aloth/RogueGPT?style=social)](https://github.com/aloth/RogueGPT/stargazers)
 
+<p align="center">
+  <img src="figures/roguegpt-ai-fake-news-generation-pipeline-wide.png" alt="RogueGPT — Controlled AI stimulus generation pipeline for fake news research" width="700">
+</p>
+
 ## The Research Mandate: Why RogueGPT Exists
 To empirically study how humans perceive AI-generated news, researchers require a reliable and highly controllable source of stimuli. RogueGPT serves as the dedicated **stimulus generation engine** for the JudgeGPT research project. Its purpose is to create a diverse and methodologically sound dataset of news fragments under specific, reproducible conditions.
 
