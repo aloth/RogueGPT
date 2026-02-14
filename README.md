@@ -4,6 +4,7 @@
 [![Status](https://img.shields.io/badge/status-active%20%26%20evolving-orange.svg)](https://github.com/aloth/RogueGPT)
 [![License](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![GitHub Stars](https://img.shields.io/github/stars/aloth/RogueGPT?style=social)](https://github.com/aloth/RogueGPT/stargazers)
+[![Mastodon](https://img.shields.io/badge/Mastodon-@xlth-6364FF?logo=mastodon&logoColor=white)](https://mastodon.social/@xlth)
 
 <p align="center">
   <img src="figures/roguegpt-ai-fake-news-generation-pipeline-wide.png" alt="RogueGPT — Controlled AI stimulus generation pipeline for fake news research" width="700">
