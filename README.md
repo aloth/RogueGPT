@@ -113,6 +113,14 @@ To keep pace with the "technological arms race," the research must test human pe
 ### Building Trust and Mitigation Systems
 Future work includes building a **content verification layer** and integrating with established **fact-checking services**. This would allow RogueGPT to not only generate content but also to annotate it with veracity scores, enabling new lines of research into misinformation mitigation and "inoculation" theories.
 
+## Dataset
+
+The RogueGPT Stimulus Corpus (2,308 multilingual text fragments across 7 LLMs, 4 languages, and 3 formats) is available on Zenodo:
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18703138.svg)](https://doi.org/10.5281/zenodo.18703138)
+
+Access is restricted to academic research. Submit a request via the Zenodo page.
+
 ## Citation
 If you use RogueGPT or its underlying research in your work, please cite our papers:
 
