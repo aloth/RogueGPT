@@ -233,7 +233,7 @@ The naming convention follows `provider_model-variant` (e.g., `openai_gpt-4o_202
 | Use the dataset | [Request access on Zenodo](https://doi.org/10.5281/zenodo.18703138) |
 | Extend the corpus | Fork, add models, submit a PR |
 | Participate in the study | [JudgeGPT Survey](https://judgegpt.streamlit.app/) |
-| Contact the authors | [Alexander.Loth@microsoft.com](mailto:Alexander.Loth@microsoft.com) |
+| Contact the authors | [alexander.loth@stud.fra-uas.de](mailto:alexander.loth@stud.fra-uas.de) |
 
 ### Expert Survey
 We are conducting a follow-up study to gather expert perspectives on AI-driven disinformation risks and mitigation strategies. If you have expertise in AI, policy, or journalism, we invite your participation:
