@@ -1,8 +1,4 @@
-# requirements.txt
-
-pymongo[srv]
+openai>=1.0.0
+pymongo
 streamlit
-streamlit-javascript
-datetime
-uuid
-openai
+mcp[cli]>=1.0.0
