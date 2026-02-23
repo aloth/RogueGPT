@@ -23,12 +23,12 @@ RogueGPT is the stimulus generation component of the [JudgeGPT](https://github.c
 RogueGPT follows a three-layer architecture that separates data logic from interfaces:
 
 ```
-┌─────────────────────────────────────────────────────┐
+┌──────────────────────────────────────────────────────┐
 │                   Interfaces                         │
-│  ┌───────────┐  ┌───────────┐  ┌──────────────────┐ │
-│  │  app.py   │  │  cli.py   │  │  mcp_server.py   │ │
-│  │ Streamlit │  │ Terminal  │  │  MCP Protocol    │ │
-│  └─────┬─────┘  └─────┬─────┘  └────────┬─────────┘ │
+│  ┌───────────┐  ┌───────────┐  ┌──────────────────┐  │
+│  │  app.py   │  │  cli.py   │  │  mcp_server.py   │  │
+│  │ Streamlit │  │ Terminal  │  │  MCP Protocol    │  │
+│  └─────┬─────┘  └─────┬─────┘  └────────┬─────────┘  │
 │        └───────────────┼─────────────────┘           │
 │                   ┌────┴────┐                        │
 │                   │ core.py │                        │
@@ -40,7 +40,7 @@ RogueGPT follows a three-layer architecture that separates data logic from inter
 │                │ realorfake.    │                    │
 │                │ fragments      │                    │
 │                └────────────────┘                    │
-└─────────────────────────────────────────────────────┘
+└──────────────────────────────────────────────────────┘
 ```
 
 | Component | Purpose |
@@ -55,7 +55,18 @@ RogueGPT follows a three-layer architecture that separates data logic from inter
 
 The current corpus contains **2,308 multilingual news fragments** spanning:
 
-- **7 LLM families** (GPT-4, GPT-4o, GPT-3.5, LLaMA-2 13B, Gemma 7B, Mistral 7B, Phi-3 Mini)
+- **37 model configurations across 10 providers:**
+  OpenAI (GPT-3.5, GPT-4, GPT-4 Turbo, GPT-4o, GPT-4o Mini, GPT-4.1, GPT-4.1 Mini, GPT-4.1 Nano, o1, o1-Mini, o1-Preview, o1-Pro, o3-Mini),
+  Anthropic (Claude 3.5 Sonnet, Claude Sonnet 4.5, Claude Opus 4.6),
+  Google (Gemma 7B, Gemini 1.5 Flash, Gemini 1.5 Pro, Gemini 2.0 Flash, Gemini 3 Pro),
+  Meta (LLaMA-2 13B, LLaMA-3.3 70B),
+  Mistral (Mistral 7B, Mistral Large 2),
+  DeepSeek (R1, V3),
+  Microsoft (Phi-3 Mini),
+  Zhipu (GLM-4.6, GLM-4.7),
+  Moonshot (Kimi K2.5),
+  Qwen (Qwen-2.5 72B),
+  MiniMax (M2.1)
 - **4 languages** (English, German, French, Spanish)
 - **3 formats** (tweet, headline, short article)
 - **5 journalistic styles per language** (e.g., NYT, BBC, CNN, Fox News, WSJ for English)
