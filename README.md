@@ -29,17 +29,17 @@ RogueGPT follows a three-layer architecture that separates data logic from inter
 │  │  app.py   │  │  cli.py   │  │  mcp_server.py   │  │
 │  │ Streamlit │  │ Terminal  │  │  MCP Protocol    │  │
 │  └─────┬─────┘  └─────┬─────┘  └────────┬─────────┘  │
-│        └───────────────┼─────────────────┘           │
-│                   ┌────┴────┐                        │
-│                   │ core.py │                        │
-│                   │  Data   │                        │
-│                   │  Layer  │                        │
-│                   └────┬────┘                        │
-│                ┌───────┴────────┐                    │
-│                │    MongoDB     │                    │
-│                │ realorfake.    │                    │
-│                │ fragments      │                    │
-│                └────────────────┘                    │
+│        └──────────────┼─────────────────┘            │
+│                  ┌────┴────┐                         │
+│                  │ core.py │                         │
+│                  │  Data   │                         │
+│                  │  Layer  │                         │
+│                  └────┬────┘                         │
+│               ┌───────┴────────┐                     │
+│               │    MongoDB     │                     │
+│               │ realorfake.    │                     │
+│               │ fragments      │                     │
+│               └────────────────┘                     │
 └──────────────────────────────────────────────────────┘
 ```
 
