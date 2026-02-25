@@ -53,7 +53,7 @@ RogueGPT follows a three-layer architecture that separates data logic from inter
 
 ## Dataset
 
-The current corpus contains **2,308 multilingual news fragments** spanning:
+The current corpus contains **2,663 multilingual news fragments** spanning:
 
 - **37 model configurations across 10 providers:**
   OpenAI (GPT-3.5, GPT-4, GPT-4 Turbo, GPT-4o, GPT-4o Mini, GPT-4.1, GPT-4.1 Mini, GPT-4.1 Nano, o1, o1-Mini, o1-Preview, o1-Pro, o3-Mini),
@@ -70,13 +70,23 @@ The current corpus contains **2,308 multilingual news fragments** spanning:
 - **4 languages** (English, German, French, Spanish)
 - **3 formats** (tweet, headline, short article)
 - **5 journalistic styles per language** (e.g., NYT, BBC, CNN, Fox News, WSJ for English)
-- **51 human-sourced fragments** as experimental anchors
+- **222 human-sourced fragments** (164 legitimate, 58 fake news) as experimental anchors
 
 The corpus is available on Zenodo under restricted access for academic research:
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18703138.svg)](https://doi.org/10.5281/zenodo.18703138)
 
 The model configuration (`prompt_engine.json`) currently defines **37 model identifiers** across 10 providers, enabling rapid expansion of the corpus with new model generations.
+
+### Data Sourcing: Human-Written Fragments
+
+Human-written fragments are sourced from two categories:
+
+**Legitimate News** is collected from established, internationally recognized outlets via RSS feeds, including BBC News, The Guardian, Reuters, Tagesschau, FAZ, Le Monde, and El País. For each article, the opening paragraphs are extracted and stored alongside the source URL and outlet name for full provenance.
+
+**Fake News** is identified using the [CRED-1 Domain Credibility Dataset](https://github.com/aloth/cred-1) (Loth, Kappes & Pahl, 2025; [DOI: 10.5281/zenodo.18769460](https://doi.org/10.5281/zenodo.18769460)), which scores 2,672 domains on a 0–1 credibility scale based on editorial classification, fact-check claims, web popularity, and domain age. Domains categorized as *fake*, *unreliable*, or *conspiracy* with a CRED-1 score below 0.25 and an active Tranco web rank serve as the source pool. Articles are then scraped from these domains' RSS feeds using the same extraction pipeline as legitimate news. This approach ensures that fake news fragments reflect authentic disinformation language rather than artificially constructed examples.
+
+Both categories are ingested via the RogueGPT CLI with full metadata (`--origin Human`, `--outlet`, `--url`, and `--is-fake` for fake news), enabling reproducible dataset expansion.
 
 ## Research Pipeline
 
