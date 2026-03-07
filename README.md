@@ -300,6 +300,15 @@ If you use RogueGPT or its dataset in your work, please cite:
 }
 ```
 
+## Related Projects
+
+| Project | Description |
+|:---|:---|
+| [JudgeGPT](https://github.com/aloth/JudgeGPT) | Empirical platform for evaluating AI-generated news authenticity |
+| [CRED-1](https://github.com/aloth/cred-1) | Open multi-signal domain credibility dataset (2,672 domains) |
+| [verification-crisis](https://github.com/aloth/verification-crisis) | Expert survey on GenAI disinformation threats (WWW 2026) |
+| [Origin Lens](https://github.com/aloth/origin-lens) | iOS app for C2PA content credentials and EXIF verification |
+
 ## Contributing
 
 1. Fork the repository
