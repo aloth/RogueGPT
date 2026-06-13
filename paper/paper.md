@@ -24,6 +24,8 @@ affiliations:
     index: 2
 date: 13 June 2026
 bibliography: paper.bib
+repository: https://github.com/aloth/RogueGPT
+archive_doi: 10.5281/zenodo.20681921
 ---
 
 # Summary
