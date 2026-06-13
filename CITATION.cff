@@ -1,21 +1,78 @@
 cff-version: 1.2.0
-title: "RogueGPT: A Controlled Stimulus Generator for AI News Authenticity Research"
-message: "If you use this software, please cite our paper."
+title: "RogueGPT: A Controlled Stimulus Generation Framework for News Authenticity Research"
+message: "If you use this software, please cite it as below."
 type: software
+version: "0.1.0"
+date-released: "2026-06-13"
+license: GPL-3.0-or-later
+repository-code: "https://github.com/aloth/RogueGPT"
+doi: "10.5281/zenodo.18703138"
+url: "https://github.com/aloth/RogueGPT"
+abstract: >
+  RogueGPT is a controlled stimulus generation framework for AI news authenticity
+  research. It provides systematic, reproducible generation of multilingual news
+  fragments across multiple large language models, journalistic styles, and content
+  formats, together with a MongoDB-backed corpus, a CLI, a Streamlit web interface,
+  and a Model Context Protocol (MCP) server for AI agent integration.
+keywords:
+  - fake-news
+  - misinformation
+  - stimulus-generation
+  - large-language-models
+  - research-methodology
+  - NLP
+  - MongoDB
 authors:
   - family-names: Loth
     given-names: Alexander
     orcid: "https://orcid.org/0009-0003-9327-6865"
+    affiliation: "Frankfurt University of Applied Sciences, Germany"
+    email: "alexander.loth@stud.fra-uas.de"
   - family-names: Kappes
     given-names: Martin
+    affiliation: "Frankfurt University of Applied Sciences, Germany"
   - family-names: Pahl
     given-names: Marc-Oliver
     orcid: "https://orcid.org/0000-0001-5241-3809"
-repository-code: "https://github.com/aloth/RogueGPT"
-license: GPL-3.0
+    affiliation: "IMT Atlantique, France"
+references:
+  - type: article
+    title: >
+      Industrialized Deception: The Collateral Effects of LLM-Generated Misinformation
+      on Digital Ecosystems
+    authors:
+      - family-names: Loth
+        given-names: Alexander
+      - family-names: Kappes
+        given-names: Martin
+      - family-names: Pahl
+        given-names: Marc-Oliver
+    year: 2026
+    url: "https://arxiv.org/abs/2601.21963"
+    identifiers:
+      - type: other
+        value: "arXiv:2601.21963"
+  - type: article
+    title: >
+      Eroding the Truth-Default: A Causal Analysis of Human Susceptibility to
+      Foundation Model Hallucinations and Disinformation in the Wild
+    authors:
+      - family-names: Loth
+        given-names: Alexander
+      - family-names: Kappes
+        given-names: Martin
+      - family-names: Pahl
+        given-names: Marc-Oliver
+    year: 2026
+    url: "https://arxiv.org/abs/2601.22871"
+    identifiers:
+      - type: other
+        value: "arXiv:2601.22871"
 preferred-citation:
   type: conference-paper
-  title: "Industrialized Deception: The Collateral Effects of LLM-Generated Misinformation on Digital Ecosystems"
+  title: >
+    Industrialized Deception: The Collateral Effects of LLM-Generated Misinformation
+    on Digital Ecosystems
   authors:
     - family-names: Loth
       given-names: Alexander
@@ -32,4 +89,5 @@ preferred-citation:
     name: ACM
   location:
     name: "Dubai, United Arab Emirates"
+  doi: "10.1145/3774905.3795471"
   url: "https://arxiv.org/abs/2601.21963"

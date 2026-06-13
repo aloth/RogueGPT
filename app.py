@@ -11,8 +11,8 @@ import core
 __name__ = "RogueGPT"
 __version__ = "1.1.0"
 __author__ = "Alexander Loth"
-__email__ = "Alexander.Loth@microsoft.com"
-__research_paper__ = "https://arxiv.org/abs/2404.03021"
+__email__ = "alexander.loth@stud.fra-uas.de"
+__research_paper__ = "https://arxiv.org/abs/2601.21963"
 __report_a_bug__ = "https://github.com/aloth/RogueGPT/issues"
 
 

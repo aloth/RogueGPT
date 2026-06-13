@@ -1,0 +1,90 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "roguegpt"
+version = "1.2.0"
+description = "A controlled stimulus generation framework for AI news authenticity research"
+readme = "README.md"
+license = { text = "GPL-3.0-or-later" }
+authors = [
+    { name = "Alexander Loth", email = "alexander.loth@stud.fra-uas.de" },
+    { name = "Martin Kappes" },
+    { name = "Marc-Oliver Pahl", email = "marc-oliver.pahl@imt-atlantique.fr" },
+]
+keywords = [
+    "fake-news",
+    "misinformation",
+    "LLM",
+    "stimulus-generation",
+    "NLP",
+    "research",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "pymongo>=4.0",
+    "dnspython>=2.0",   # required for mongodb+srv:// URIs
+]
+
+[project.optional-dependencies]
+app = [
+    "streamlit>=1.30",
+    "openai>=1.0",
+]
+mcp = [
+    "mcp[cli]>=1.0",
+]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "pytest-mock>=3.0",
+]
+
+[project.scripts]
+roguegpt = "cli:main"
+
+[project.urls]
+Homepage       = "https://github.com/aloth/RogueGPT"
+Repository     = "https://github.com/aloth/RogueGPT"
+"Bug Tracker"  = "https://github.com/aloth/RogueGPT/issues"
+Documentation  = "https://github.com/aloth/RogueGPT#readme"
+DOI            = "https://doi.org/10.5281/zenodo.18703138"
+
+# ── Flat-layout: include all top-level .py modules ──────────────────────────
+[tool.setuptools]
+py-modules = ["core", "cli", "mcp_server", "app", "generate_batch"]
+
+# Include the config file in the package data
+[tool.setuptools.package-data]
+"*" = ["prompt_engine.json"]
+
+# ── pytest ───────────────────────────────────────────────────────────────────
+[tool.pytest.ini_options]
+testpaths    = ["tests"]
+addopts      = "-v --tb=short"
+markers      = [
+    "requires_db: marks tests that need a live MongoDB instance (deselect with -m 'not requires_db')",
+]
+
+# ── coverage ─────────────────────────────────────────────────────────────────
+[tool.coverage.run]
+source = ["."]
+omit   = ["tests/*", "app.py", "generate_batch.py", "venv/*", ".venv/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.:",
+    "raise RuntimeError",
+]
