@@ -13,6 +13,7 @@ authors:
     orcid: 0009-0003-9327-6865
     affiliation: 1
   - name: Martin Kappes
+    orcid: 0000-0002-8768-8359
     affiliation: 1
   - name: Marc-Oliver Pahl
     orcid: 0000-0001-5241-3809
@@ -182,7 +183,9 @@ More recent efforts such as the M4 corpus [@wang2024m4] collect
 multi-generator outputs across domains and languages but distribute them as static
 datasets without tooling for reproducible expansion. Similarly, MULTITuDE
 [@macko2023multitude] covers 11 generators across 11 languages but is frozen at
-its release configuration.
+its release configuration. FakeNewsNet [@shu2020fakenewsnet] provides a rich
+repository combining news content with social context but focuses on detection
+research with pre-collected articles rather than controlled stimulus generation.
 
 RogueGPT differs from all of these in three respects: (1) it is an active
 generation infrastructure rather than a frozen benchmark, supporting incremental
