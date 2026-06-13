@@ -7,9 +7,8 @@ import json
 import os
 import sys
 from io import StringIO
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
-import pytest
 
 # Ensure flat-layout root is importable
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))

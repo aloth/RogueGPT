@@ -1,10 +1,8 @@
 import streamlit as st
 from openai import OpenAI, AzureOpenAI
 from openai import APIConnectionError, RateLimitError, AuthenticationError, APIError
-import json
 import re
 import itertools
-from datetime import datetime
 
 import core
 
@@ -168,7 +166,7 @@ def automatic_news_generation_ui() -> None:
     placeholders = re.findall(r"\[\[(.*?)\]\]", prompt_template)
     uncovered_placeholders = [ph for ph in placeholders if ph not in all_possible_keys]
 
-    user_prompt_template = st.text_input("Prompt Template", prompt_template)
+    st.text_input("Prompt Template", prompt_template)
 
     user_selections = render_ui(components)
 

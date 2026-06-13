@@ -2,8 +2,6 @@
 Shared pytest fixtures for the RogueGPT test suite.
 """
 import json
-import os
-import tempfile
 
 import pytest
 

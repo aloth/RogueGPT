@@ -7,8 +7,7 @@ are marked with @pytest.mark.requires_db and skipped in CI.
 import json
 import os
 import sys
-import uuid
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 import pytest
 
