@@ -84,7 +84,7 @@ Human-written fragments are sourced from two categories:
 
 **Legitimate News** is collected from established, internationally recognized outlets via RSS feeds, including BBC News, The Guardian, Reuters, Tagesschau, FAZ, Le Monde, and El País. For each article, the opening paragraphs are extracted and stored alongside the source URL and outlet name for full provenance.
 
-**Fake News** is identified using the [CRED-1 Domain Credibility Dataset](https://github.com/aloth/cred-1) (Loth, Kappes & Pahl, 2025; [DOI: 10.5281/zenodo.18769460](https://doi.org/10.5281/zenodo.18769460)), which scores 2,672 domains on a 0–1 credibility scale based on editorial classification, fact-check claims, web popularity, and domain age. Domains categorized as *fake*, *unreliable*, or *conspiracy* with a CRED-1 score below 0.25 and an active Tranco web rank serve as the source pool. Articles are then scraped from these domains' RSS feeds using the same extraction pipeline as legitimate news. This approach ensures that fake news fragments reflect authentic disinformation language rather than artificially constructed examples.
+**Fake News** is identified using the [CRED-1 Domain Credibility Dataset](https://github.com/aloth/cred-1) (Loth, Kappes & Pahl, 2025; [DOI: 10.5281/zenodo.18769460](https://doi.org/10.5281/zenodo.18769460)), which scores 2,673 domains on a 0–1 credibility scale based on editorial classification, fact-check claims, web popularity, and domain age. Domains categorized as *fake*, *unreliable*, or *conspiracy* with a CRED-1 score below 0.25 and an active Tranco web rank serve as the source pool. Articles are then scraped from these domains' RSS feeds using the same extraction pipeline as legitimate news. This approach ensures that fake news fragments reflect authentic disinformation language rather than artificially constructed examples.
 
 Both categories are ingested via the RogueGPT CLI with full metadata (`--origin Human`, `--outlet`, `--url`, and `--is-fake` for fake news), enabling reproducible dataset expansion.
 
@@ -312,7 +312,7 @@ RogueGPT is part of a broader research program on generation and human perceptio
 | Project | Description |
 |:---|:---|
 | [JudgeGPT](https://github.com/aloth/JudgeGPT) | Empirical platform for evaluating AI-generated news authenticity |
-| [CRED-1](https://github.com/aloth/cred-1) | Open multi-signal domain credibility dataset (2,672 domains) |
+| [CRED-1](https://github.com/aloth/cred-1) | Open multi-signal domain credibility dataset (2,673 domains) |
 | [verification-crisis](https://github.com/aloth/verification-crisis) | Expert survey on GenAI disinformation threats (WWW 2026) |
 | [Origin Lens](https://github.com/aloth/origin-lens) | iOS app for C2PA content credentials and EXIF verification |
 
