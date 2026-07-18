@@ -57,7 +57,7 @@ RogueGPT follows a three-layer architecture that separates data logic from inter
 
 ## Dataset
 
-The current corpus contains **2,663 multilingual news fragments** spanning:
+The current corpus contains **3,278 multilingual news fragments** spanning:
 
 - **37 model configurations across 10 providers:**
   OpenAI (GPT-3.5, GPT-4, GPT-4 Turbo, GPT-4o, GPT-4o Mini, GPT-4.1, GPT-4.1 Mini, GPT-4.1 Nano, o1, o1-Mini, o1-Preview, o1-Pro, o3-Mini),
@@ -74,7 +74,9 @@ The current corpus contains **2,663 multilingual news fragments** spanning:
 - **4 languages** (English, German, French, Spanish)
 - **3 formats** (tweet, headline, short article)
 - **5 journalistic styles per language** (e.g., NYT, BBC, CNN, Fox News, WSJ for English)
-- **222 human-sourced fragments** (164 legitimate, 58 fake news) as experimental anchors
+- **640 human-sourced fragments** as experimental anchors (legitimate news + fake-news references)
+
+Of the full corpus, **2,638 fragments are machine-generated** and **640 are human-authored**, all with binary human/machine labels and full generation metadata (source model, prompt type, language, format, topic).
 
 The corpus is available on Zenodo under restricted access for academic research:
 
