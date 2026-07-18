@@ -264,7 +264,7 @@ If you use RogueGPT or its dataset in your work, please cite:
     booktitle = {Companion Proceedings of the ACM Web Conference 2026
                  (WWW '26 Companion)},
     year      = {2026},
-    month     = apr,
+    month     = may,
     publisher = {ACM},
     address   = {New York, NY, USA},
     location  = {Dubai, United Arab Emirates},
@@ -281,7 +281,7 @@ If you use RogueGPT or its dataset in your work, please cite:
     booktitle = {Companion Proceedings of the ACM Web Conference 2026
                  (WWW '26 Companion)},
     year      = {2026},
-    month     = apr,
+    month     = may,
     publisher = {ACM},
     address   = {New York, NY, USA},
     location  = {Dubai, United Arab Emirates},
@@ -299,6 +299,13 @@ If you use RogueGPT or its dataset in your work, please cite:
     url     = {https://arxiv.org/abs/2404.03021}
 }
 ```
+
+### Related Publications
+
+RogueGPT is part of a broader research program on generation and human perception of AI-generated news:
+
+- **Can Humans Tell? A Dual-Axis Study of Human Perception of LLM-Generated News** (WebSci Companion '26). Reports human perception findings from RogueGPT-generated stimuli. [doi:10.1145/3795513.3807431](https://doi.org/10.1145/3795513.3807431)
+- **The Indistinguishability Threshold: Measuring Cognitive Vulnerabilities to AI-Generated Disinformation** (WebSci Companion '26, PhD Symposium). [doi:10.1145/3795513.3807421](https://doi.org/10.1145/3795513.3807421)
 
 ## Related Projects
 
