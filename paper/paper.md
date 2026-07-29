@@ -246,7 +246,7 @@ The framework generates short fragments for study delivery, not complete or
 distributable articles. It requires the researcher to supply their own API
 credentials, so generation remains attributable to an accountable party under the
 terms of the upstream providers, whose own usage policies continue to apply. Human
-data collection through JudgeGPT is conducted under institutional ethics review.
+data collection through JudgeGPT is subject to institutional ethics review.
 The corpus is archived on Zenodo under restricted access for academic use rather
 than released openly [@loth2026roguegpt_corpus]. The software is licensed under
 GPL-3.0, so derivative work remains open to inspection.

@@ -35,8 +35,8 @@ back to the exact generation parameters.
 inside studies. It has no publishing, posting, distribution, scheduling, or
 audience-targeting capability, and none is planned. Researchers supply their own
 API credentials, so generation stays attributable and the upstream providers'
-usage policies continue to apply. Human data collection through JudgeGPT runs
-under institutional ethics review, the corpus is archived under restricted
+usage policies continue to apply. Human data collection through JudgeGPT is
+subject to institutional ethics review, the corpus is archived under restricted
 academic access, and the software is GPL-3.0 so derivative work stays open to
 inspection. See [Limitations](#limitations) and [Disclaimer](#disclaimer).
 
