@@ -56,8 +56,11 @@ jobs:
           cache: pip
 
       - name: Install linters
+        # Pinned deliberately: ruff ships new rules in minor releases, so an
+        # unpinned install turns any unrelated commit red without a code change.
+        # ruff 0.16.0 introduced 46 findings in code that 0.15.22 accepted.
         run: |
-          pip install ruff
+          pip install "ruff==0.15.22"
 
       - name: Run ruff
         run: |
