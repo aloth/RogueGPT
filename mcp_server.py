@@ -25,7 +25,7 @@ import core
 
 mcp = FastMCP(
     "RogueGPT",
-    version="1.1.0",
+    version=core.__version__,
     description=(
         "MCP server for the RogueGPT research dataset. "
         "Ingest human-sourced or LLM-generated news fragments and retrieve them for evaluation."

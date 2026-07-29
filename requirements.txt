@@ -1,4 +1,12 @@
-openai>=1.0.0
-pymongo
-streamlit
-mcp[cli]>=1.0.0
+# Convenience file for a full local install (web app + MCP server).
+# The authoritative dependency declaration lives in pyproject.toml.
+# Preferred:  pip install ".[app,mcp]"
+#
+# Note: do not add stdlib module names (uuid, datetime) here - PyPI shims of
+# those exist and can shadow or break the standard library.
+
+pymongo>=4.0,<5
+dnspython>=2.0,<3      # required for mongodb+srv:// URIs
+openai>=1.0,<3
+streamlit>=1.30,<2
+mcp[cli]>=1.0,<2

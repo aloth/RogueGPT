@@ -163,6 +163,30 @@ Both categories are ingested with full provenance metadata, providing experiment
 anchors that reflect authentic disinformation language rather than artificially
 constructed examples.
 
+# Software Design
+
+RogueGPT is organised in three layers so that the data logic can be tested and
+reused independently of any interface.
+
+`core.py` is the only module that talks to MongoDB. It owns schema validation,
+field normalisation, config loading, and the retrieval API. It has no UI
+dependencies, which is what makes the test suite able to cover it directly.
+
+Three interfaces sit on top of `core.py` and share its validation path: a
+Streamlit web application (`app.py`) for interactive generation, a command-line
+interface (`cli.py`) for scripted and batch work, and a Model Context Protocol
+server (`mcp_server.py`) that exposes `ingest_fragment` and `retrieve_fragments`
+as tools for AI-agent workflows. Because all three route through the same
+validator, a fragment ingested by an agent is subject to exactly the same schema
+and provenance requirements as one entered by hand.
+
+Generation behaviour is not hard-coded. `prompt_engine.json` declares the model
+identifiers, prompt templates, languages, journalistic styles, and content
+formats, so extending the corpus to a newly released model is a configuration
+change rather than a code change. Every stored fragment carries the parameters
+that produced it, which is what allows a later analysis to filter by any single
+experimental variable.
+
 # State of the Field
 
 Several tools and datasets address fake news generation and detection research,
@@ -194,6 +218,58 @@ provenance per fragment, enabling fine-grained experimental filtering by model,
 language, style, and format; and (3) its MCP integration is, to our knowledge,
 the first such interface for a research corpus management system, enabling direct
 use within AI agent workflows.
+
+# Research Impact Statement
+
+RogueGPT exists to measure how people and detectors respond to AI-generated
+news, and its design follows from that purpose. The framework produces
+experimental stimuli for controlled studies; it has no publishing, posting, or
+distribution path, and no scheduling, targeting, or audience-selection
+functionality. Fragments are written to a private MongoDB corpus and are read
+back by researchers.
+
+The scientific value lies in control and provenance. Because every fragment
+records the model, prompt strategy, language, style, and format that produced
+it, effects can be attributed to a specific variable rather than to an
+undifferentiated notion of "AI text". This is what static, single-model corpora
+cannot support, and it is the property that downstream perception work depends
+on. RogueGPT is the upstream stage of a three-tool pipeline: CRED-1
+[@loth2025cred1] identifies unreliable sources, RogueGPT generates controlled
+stimuli, and JudgeGPT collects human judgements that are linked back to the
+generation parameters. Results from this pipeline have been reported in
+peer-reviewed venues [@loth2026industrialized; @loth2026eroding].
+
+We recognise that a stimulus generator for misinformation research carries dual-use
+risk, and we address it through the design rather than through disclaimers alone.
+The framework generates short fragments for study delivery, not complete or
+distributable articles. It requires the researcher to supply their own API
+credentials, so generation remains attributable to an accountable party under the
+terms of the upstream providers, whose own usage policies continue to apply. Human
+data collection through JudgeGPT is conducted under institutional ethics review.
+The corpus is archived on Zenodo under restricted access for academic use rather
+than released openly [@loth2026roguegpt_corpus]. The software is licensed under
+GPL-3.0, so derivative work remains open to inspection.
+
+The counterfactual matters here: the generative capability RogueGPT orchestrates
+is already available to anyone through the same commercial APIs it calls, and it
+adds none. What does not currently exist in the open is a reproducible, fully
+instrumented way for researchers to study that capability under controlled
+conditions. Withholding the measurement infrastructure would not reduce the
+availability of synthetic misinformation; it would leave the research community
+without a shared basis for studying it.
+
+# AI Usage Disclosure
+
+The software generates its research stimuli by calling commercial large language
+model APIs; this is the documented function of the framework and is described
+throughout this paper.
+
+For the development of the software and the preparation of this manuscript,
+AI-based coding assistants were used for routine tasks such as code completion,
+refactoring suggestions, and drafting of docstrings. All such output was
+reviewed, tested, and revised by the authors, who take full responsibility for
+the content of the software and of this paper. The study design, the analysis,
+the scientific claims, and the text of this manuscript are the authors' own.
 
 # Acknowledgements
 

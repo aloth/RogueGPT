@@ -9,10 +9,17 @@ import json
 import os
 import uuid
 from datetime import datetime, timezone
+from importlib.metadata import PackageNotFoundError
+from importlib.metadata import version as _pkg_version
 from typing import Any, Dict, List, Optional
 
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
+
+try:  # installed as a package -> single source of truth is pyproject.toml
+    __version__ = _pkg_version("roguegpt")
+except PackageNotFoundError:  # running from a plain source checkout
+    __version__ = "1.3.0"
 
 CONFIG_FILE = os.path.join(os.path.dirname(__file__), "prompt_engine.json")
 

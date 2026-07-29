@@ -7,7 +7,7 @@ import itertools
 import core
 
 __name__ = "RogueGPT"
-__version__ = "1.1.0"
+__version__ = core.__version__
 __author__ = "Alexander Loth"
 __email__ = "alexander.loth@stud.fra-uas.de"
 __research_paper__ = "https://arxiv.org/abs/2601.21963"

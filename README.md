@@ -1,5 +1,6 @@
 # RogueGPT: A Controlled Stimulus Generation Framework for News Authenticity Research
 
+[![CI](https://github.com/aloth/RogueGPT/actions/workflows/ci.yml/badge.svg)](https://github.com/aloth/RogueGPT/actions/workflows/ci.yml)
 [![arXiv](https://img.shields.io/badge/arXiv-2601.21963-B31B1B.svg)](https://arxiv.org/abs/2601.21963)
 [![arXiv](https://img.shields.io/badge/arXiv-2601.22871-B31B1B.svg)](https://arxiv.org/abs/2601.22871)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18703138.svg)](https://doi.org/10.5281/zenodo.18703138)
@@ -11,6 +12,33 @@
 <p align="center">
   <img src="figures/roguegpt-ai-fake-news-generation-pipeline-wide.png" alt="RogueGPT — Controlled AI stimulus generation pipeline for fake news research" width="700">
 </p>
+
+## What This Is
+
+RogueGPT is research instrumentation. It generates controlled, fully
+parameterised news fragments so that researchers can measure how people and
+detectors respond to synthetic news under experimental conditions.
+
+It is the upstream stage of a three-part pipeline: [CRED-1](https://github.com/aloth/cred-1)
+identifies unreliable sources, RogueGPT produces the stimuli, and
+[JudgeGPT](https://github.com/aloth/JudgeGPT) collects human judgements that link
+back to the exact generation parameters.
+
+| | |
+|---|---|
+| Corpus | 3,278 multilingual fragments (2,638 machine, 640 human-sourced) |
+| Models | 37 configurations across 10 providers |
+| Coverage | 4 languages, 3 formats, 5 journalistic styles per language |
+| Provenance | every fragment stores the model, prompt, language, style, and format that produced it |
+
+**Scope and safeguards.** The framework produces short fragments for delivery
+inside studies. It has no publishing, posting, distribution, scheduling, or
+audience-targeting capability, and none is planned. Researchers supply their own
+API credentials, so generation stays attributable and the upstream providers'
+usage policies continue to apply. Human data collection through JudgeGPT runs
+under institutional ethics review, the corpus is archived under restricted
+academic access, and the software is GPL-3.0 so derivative work stays open to
+inspection. See [Limitations](#limitations) and [Disclaimer](#disclaimer).
 
 ## Motivation
 
