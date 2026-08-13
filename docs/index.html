@@ -15,9 +15,11 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
+  "@type": "SoftwareSourceCode",
   "name": "RogueGPT",
   "applicationCategory": "https://schema.org/DeveloperApplication",
+  "programmingLanguage": "Python",
+  "runtimePlatform": "Python 3",
   "operatingSystem": "Cross-platform",
   "author": { "@type": "Person", "name": "Alexander Loth", "url": "https://alexloth.com/" },
   "image": "https://raw.githubusercontent.com/aloth/RogueGPT/main/figures/roguegpt-ai-fake-news-generation-pipeline-wide.png",
@@ -26,9 +28,14 @@
   "codeRepository": "https://github.com/aloth/RogueGPT",
   "license": "https://www.gnu.org/licenses/gpl-3.0",
   "isAccessibleForFree": true,
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "citation": ["https://arxiv.org/abs/2404.03021", "https://arxiv.org/abs/2601.21963", "https://arxiv.org/abs/2601.22871"],
-  "sameAs": "https://doi.org/10.5281/zenodo.18703138"
+  "identifier": "https://doi.org/10.5281/zenodo.18703137",
+  "citation": [
+    { "@type": "ScholarlyArticle", "name": "RogueGPT: A Controlled Stimulus Generation Framework for News Authenticity Research", "url": "https://arxiv.org/abs/2601.21963" },
+    { "@type": "ScholarlyArticle", "name": "JudgeGPT: An Empirical Platform for Evaluating News Authenticity in the Age of AI", "url": "https://arxiv.org/abs/2601.22871" },
+    { "@type": "ScholarlyArticle", "url": "https://arxiv.org/abs/2404.03021" },
+    { "@type": "Dataset", "name": "RogueGPT stimulus dataset", "url": "https://doi.org/10.5281/zenodo.18703137" }
+  ],
+  "sameAs": ["https://doi.org/10.5281/zenodo.18703137", "https://github.com/aloth/JudgeGPT"]
 }
 </script>
 <style>
