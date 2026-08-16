@@ -5,6 +5,17 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.1] - 2026-08-16
+
+### Documentation
+- Corpus composition and generator configuration are now reported as separate
+  figures throughout the README and `paper/paper.md`. Corpus statistics cite the
+  released snapshot (3,278 fragments from 10 models across 6 providers); the
+  model registry count is labeled as configuration and carries the date it was
+  measured (47 identifiers across 11 providers as of 2026-02-23).
+- Added recount commands to the README so both figures can be reproduced from
+  the repository.
+
 ## [1.3.0] - 2026-07-29
 
 ### Added

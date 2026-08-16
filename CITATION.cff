@@ -2,7 +2,7 @@ cff-version: 1.2.0
 title: "RogueGPT: A Controlled Stimulus Generation Framework for News Authenticity Research"
 message: "If you use this software, please cite it as below."
 type: software
-version: "1.3.0"
+version: "1.3.1"
 date-released: "2026-07-29"
 license: GPL-3.0-or-later
 repository-code: "https://github.com/aloth/RogueGPT"

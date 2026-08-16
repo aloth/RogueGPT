@@ -27,7 +27,7 @@ back to the exact generation parameters.
 | | |
 |---|---|
 | Corpus | 3,278 multilingual fragments (2,638 machine, 640 human-sourced) |
-| Models | 37 configurations across 10 providers |
+| Models | 10 models across 6 providers (see Dataset for the full list) |
 | Coverage | 4 languages, 3 formats, 5 journalistic styles per language |
 | Provenance | every fragment stores the model, prompt, language, style, and format that produced it |
 
@@ -87,18 +87,13 @@ RogueGPT follows a three-layer architecture that separates data logic from inter
 
 The current corpus contains **3,278 multilingual news fragments** spanning:
 
-- **37 model configurations across 10 providers:**
-  OpenAI (GPT-3.5, GPT-4, GPT-4 Turbo, GPT-4o, GPT-4o Mini, GPT-4.1, GPT-4.1 Mini, GPT-4.1 Nano, o1, o1-Mini, o1-Preview, o1-Pro, o3-Mini),
-  Anthropic (Claude 3.5 Sonnet, Claude Sonnet 4.5, Claude Opus 4.6),
-  Google (Gemma 7B, Gemini 1.5 Flash, Gemini 1.5 Pro, Gemini 2.0 Flash, Gemini 3 Pro),
-  Meta (LLaMA-2 13B, LLaMA-3.3 70B),
-  Mistral (Mistral 7B, Mistral Large 2),
-  DeepSeek (R1, V3),
-  Microsoft (Phi-3 Mini),
-  Zhipu (GLM-4.6, GLM-4.7),
-  Moonshot (Kimi K2.5),
-  Qwen (Qwen-2.5 72B),
-  MiniMax (M2.1)
+- **10 models across 6 providers**, with per-model fragment counts:
+  OpenAI (GPT-3.5 Turbo 480, GPT-4o 465, GPT-4.1 67, GPT-4 2),
+  Google (Gemma 7B 454, Gemini 3 Flash 32),
+  Meta (LLaMA-2 13B Chat 452),
+  Anthropic (Claude Opus 4.6 282),
+  Mistral (Mistral 7B Instruct v0.2 273),
+  Microsoft (Phi-3 Mini 4k Instruct 131)
 - **4 languages** (English, German, French, Spanish)
 - **3 formats** (tweet, headline, short article)
 - **5 journalistic styles per language** (e.g., NYT, BBC, CNN, Fox News, WSJ for English)
@@ -121,7 +116,21 @@ The concept DOI [`10.5281/zenodo.18703137`](https://doi.org/10.5281/zenodo.18703
 
 > **Note for machine learning use:** the corpus contains duplicate content under distinct fragment identifiers (545 rows across 196 repeated texts). Group by normalized text before creating train and test splits, otherwise a random split leaks training content into the test set.
 
-The model configuration (`prompt_engine.json`) currently defines **37 model identifiers** across 10 providers, enabling rapid expansion of the corpus with new model generations.
+The figures above describe the released corpus. The model registry is a separate,
+larger surface: `prompt_engine.json` defines **47 model identifiers across 11
+providers** as of 2026-02-23, enabling rapid expansion of the corpus with new
+model generations. Registry entries are available for generation; they do not
+imply that a model contributed to the current snapshot.
+
+Both figures are reproducible from the repository:
+
+```bash
+# corpus: models and providers actually represented
+python3 -c "import csv,collections; r=list(csv.DictReader(open('roguegpt-fragments.csv'))); m=[x['MachineModel'] for x in r if x['MachineModel'].strip()]; print(len(r),'fragments |',len(m),'machine |',len(set(m)),'models |',len({x.split('_')[0] for x in m}),'providers')"
+
+# registry: models and providers configured
+python3 -c "import json; m=json.load(open('prompt_engine.json'))['GeneratorModel']; print(len(m),'models |',len({x.split('_')[0] for x in m}),'providers')"
+```
 
 ### Data Sourcing: Human-Written Fragments
 
