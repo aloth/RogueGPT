@@ -3,7 +3,7 @@
 [![CI](https://github.com/aloth/RogueGPT/actions/workflows/ci.yml/badge.svg)](https://github.com/aloth/RogueGPT/actions/workflows/ci.yml)
 [![arXiv](https://img.shields.io/badge/arXiv-2601.21963-B31B1B.svg)](https://arxiv.org/abs/2601.21963)
 [![arXiv](https://img.shields.io/badge/arXiv-2601.22871-B31B1B.svg)](https://arxiv.org/abs/2601.22871)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18703137.svg)](https://doi.org/10.5281/zenodo.18703137)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21904524.svg)](https://doi.org/10.5281/zenodo.21904524)
 [![Status](https://img.shields.io/badge/status-active%20%26%20evolving-orange.svg)](https://github.com/aloth/RogueGPT)
 [![License](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![GitHub Stars](https://img.shields.io/github/stars/aloth/RogueGPT?style=social)](https://github.com/aloth/RogueGPT/stargazers)
