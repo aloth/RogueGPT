@@ -6,7 +6,7 @@ version: "1.3.1"
 date-released: "2026-07-29"
 license: GPL-3.0-or-later
 repository-code: "https://github.com/aloth/RogueGPT"
-doi: "10.5281/zenodo.18703138"
+doi: "10.5281/zenodo.21904524"
 url: "https://github.com/aloth/RogueGPT"
 abstract: >
   RogueGPT is a controlled stimulus generation framework for AI news authenticity
@@ -69,6 +69,25 @@ references:
     identifiers:
       - type: other
         value: "arXiv:2601.22871"
+  - type: conference-paper
+    title: >
+      Interrupting the Chain: Human Perception of AI-Generated Disinformation
+      Through a Kill Chain Lens
+    authors:
+      - family-names: Loth
+        given-names: Alexander
+      - family-names: Kappes
+        given-names: Martin
+      - family-names: Pahl
+        given-names: Marc-Oliver
+    collection-title: "INFORMATIK 2026, Lecture Notes in Informatics (LNI)"
+    year: 2026
+    publisher:
+      name: "Gesellschaft fuer Informatik"
+    url: "https://arxiv.org/abs/2608.21389"
+    identifiers:
+      - type: other
+        value: "arXiv:2608.21389"
 preferred-citation:
   type: conference-paper
   title: >
