@@ -214,6 +214,12 @@ def main():
 
     print(f"\nDone. Success: {success}, Errors: {errors}")
 
+    # Exit non-zero when nothing was generated but work was attempted, so the
+    # script is usable in scripted or CI contexts. A dry run attempts nothing
+    # and stays successful.
+    if success == 0 and errors > 0:
+        sys.exit(1)
+
 
 if __name__ == "__main__":
     main()

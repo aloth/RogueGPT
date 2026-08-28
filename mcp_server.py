@@ -23,14 +23,10 @@ import core
 
 # ─── Server setup ─────────────────────────────────────────────────────
 
-mcp = FastMCP(
-    "RogueGPT",
-    version=core.__version__,
-    description=(
-        "MCP server for the RogueGPT research dataset. "
-        "Ingest human-sourced or LLM-generated news fragments and retrieve them for evaluation."
-    ),
-)
+# FastMCP accepts only the server name from mcp 1.13 onwards; `version` and
+# `description` were removed from its signature. Passing either raises TypeError
+# on every release after 1.12, so the server identity is limited to the name.
+mcp = FastMCP("RogueGPT")
 
 
 # ─── Tool: ingest ─────────────────────────────────────────────────────

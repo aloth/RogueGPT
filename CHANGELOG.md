@@ -5,16 +5,19 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.3.1] - 2026-08-16
+## [1.3.1] - 2026-08-28
+
+### Fixed
+- The MCP server could not be imported on a fresh install. `FastMCP` no longer accepts the `version` and `description` keyword arguments from mcp 1.13 onwards, so the call now passes only the server name. Reported in #3.
+- The `mcp` extra declared `mcp[cli]>=1.0` in `pyproject.toml`, which resolved to mcp 2.x, where `FastMCP` has been renamed. `mcp.server.fastmcp` also does not exist before 1.2, so the floor was never valid. Both `pyproject.toml` and `requirements.txt` now declare `mcp[cli]>=1.2,<2`. Reported in #3.
+- `generate_batch.py` exited 0 even when every generation failed. It now exits 1 when no fragment was produced and at least one attempt failed. A dry run attempts nothing and still exits 0. Reported in #4.
+
+### Added
+- Import-level smoke test for the MCP server (`tests/test_mcp_server.py`), skipped when the optional `mcp` extra is not installed. CI now installs `.[dev,mcp]` so the test runs there.
 
 ### Documentation
-- Corpus composition and generator configuration are now reported as separate
-  figures throughout the README and `paper/paper.md`. Corpus statistics cite the
-  released snapshot (3,278 fragments from 10 models across 6 providers); the
-  model registry count is labeled as configuration and carries the date it was
-  measured (47 identifiers across 11 providers as of 2026-02-23).
-- Added recount commands to the README so both figures can be reproduced from
-  the repository.
+- Corpus composition and generator configuration are now reported as separate figures throughout the README and `paper/paper.md`. Corpus statistics cite the released snapshot (3,278 fragments from 10 models across 6 providers); the model registry count is labeled as configuration and carries the date it was measured (47 identifiers across 11 providers as of 2026-02-23).
+- Added recount commands to the README so both figures can be reproduced from the repository.
 
 ## [1.3.0] - 2026-07-29
 
@@ -60,6 +63,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial stable release: controlled AI news stimulus generation for JudgeGPT.
 
+[1.3.1]: https://github.com/aloth/RogueGPT/releases/tag/v1.3.1
 [1.3.0]: https://github.com/aloth/RogueGPT/releases/tag/v1.3.0
 [1.2.0]: https://github.com/aloth/RogueGPT/releases/tag/v1.2.0
 [1.1.0]: https://github.com/aloth/RogueGPT/releases/tag/v1.1.0

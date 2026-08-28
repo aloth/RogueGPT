@@ -43,7 +43,8 @@ app = [
     "openai>=1.0",
 ]
 mcp = [
-    "mcp[cli]>=1.0",
+    # mcp.server.fastmcp does not exist before 1.2; mcp 2.x renamed FastMCP.
+    "mcp[cli]>=1.2,<2",
 ]
 dev = [
     "pytest>=7.0",
