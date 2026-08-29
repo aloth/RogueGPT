@@ -129,9 +129,12 @@ third-party news material that the depositor cannot license onward, and they are
 shared under the research exception for text and data mining, which limits sharing
 to researchers rather than the general public. The restriction also keeps a corpus
 of misinformation-like material from being distributed without an accountable
-requester. Every fragment records its own origin (`Origin`, `MachineModel`,
-`MachinePrompt`, source reference), so the machine-generated and human-sourced
-parts stay separable and independently filterable.
+requester. Every fragment records its own origin. The machine-generated rows carry
+`MachineModel` and `MachinePrompt`; the human-sourced rows are traceable to
+outlet and URL through the linked JudgeGPT deposit
+([10.5281/zenodo.18703385](https://doi.org/10.5281/zenodo.18703385)), which holds
+`HumanOutlet`, `HumanURL` and `IngestedVia` for the same fragments. The `Origin`
+column keeps the two parts separable and independently filterable.
 
 # Key Features
 
