@@ -65,6 +65,7 @@ def valid_machine_fragment():
         "ISOLanguage": "en",
         "MachineModel": "openai_gpt-4o_2024-08-06",
         "MachinePrompt": "Write a fake news article about Mars.",
+        "SamplingParams": {"temperature": 0.9, "max_tokens": 1024},
     }
 
 

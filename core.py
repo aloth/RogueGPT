@@ -118,6 +118,8 @@ def validate_fragment(fragment: dict, strict_model: bool = True) -> List[str]:
             warnings.append(msg)
         if not fragment.get("MachinePrompt"):
             warnings.append("MachinePrompt is missing (recommended for reproducibility).")
+        if not fragment.get("SamplingParams"):
+            warnings.append("SamplingParams is missing (recommended for reproducibility).")
 
     lang = fragment.get("ISOLanguage")
     valid_langs = get_valid_languages()

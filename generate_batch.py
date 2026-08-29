@@ -51,6 +51,10 @@ STYLES_BY_LANG = {
 
 FORMATS = ["tweet", "headline", "short article"]
 
+# Sampling parameters, recorded per fragment so the generation conditions are
+# reconstructable from the corpus rather than only from this source file.
+SAMPLING = {"temperature": 0.9, "max_tokens": 1024}
+
 PROMPT_TEMPLATE = (
     "Write a {format} about '''{seed}''' in {lang_name} in the style of {style}. "
     "Write only the content, no introduction, no explanation, no disclaimer, no translation."
@@ -67,7 +71,7 @@ def generate_gemini(model: str, prompt: str) -> str:
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"
     payload = json.dumps({
         "contents": [{"parts": [{"text": prompt}]}],
-        "generationConfig": {"temperature": 0.9, "maxOutputTokens": 1024}
+        "generationConfig": {"temperature": SAMPLING["temperature"], "maxOutputTokens": SAMPLING["max_tokens"]}
     }).encode()
     
     req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"})
@@ -86,8 +90,8 @@ def generate_github(model: str, prompt: str) -> str:
     payload = json.dumps({
         "model": model,
         "messages": [{"role": "user", "content": prompt}],
-        "temperature": 0.9,
-        "max_tokens": 1024,
+        "temperature": SAMPLING["temperature"],
+        "max_tokens": SAMPLING["max_tokens"],
     }).encode()
     req = urllib.request.Request(url, data=payload, headers={
         "Content-Type": "application/json",
@@ -106,8 +110,8 @@ def generate_openai(model: str, prompt: str) -> str:
     resp = client.chat.completions.create(
         model=model,
         messages=[{"role": "user", "content": prompt}],
-        temperature=0.9,
-        max_tokens=1024,
+        temperature=SAMPLING["temperature"],
+        max_tokens=SAMPLING["max_tokens"],
     )
     return resp.choices[0].message.content.strip()
 
@@ -195,6 +199,7 @@ def main():
                 "Origin": "Machine",
                 "MachineModel": model_id,
                 "MachinePrompt": prompt,
+                "SamplingParams": dict(SAMPLING),
                 "ISOLanguage": lang,
                 "IsFake": True,
                 "IngestedVia": "cli",

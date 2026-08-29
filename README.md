@@ -101,7 +101,7 @@ The current corpus contains **3,278 multilingual news fragments** spanning:
 
 Of the full corpus, **2,638 fragments are machine-generated** and **640 are human-authored**, all with binary human/machine labels and full generation metadata (source model, prompt type, language, format, topic).
 
-The corpus is available on Zenodo under restricted access for academic research:
+The corpus is available on Zenodo under restricted access for academic research. The machine-generated fragments are released under CC BY 4.0; the human-sourced fragments are excerpts of third-party news material that we cannot license onward and are shared for research use only, which is why access is granted on request rather than openly:
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18703137.svg)](https://doi.org/10.5281/zenodo.18703137)
 

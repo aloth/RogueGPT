@@ -26,7 +26,7 @@ affiliations:
 date: 13 June 2026
 bibliography: paper.bib
 repository: https://github.com/aloth/RogueGPT
-archive_doi: 10.5281/zenodo.20681921
+archive_doi: 10.5281/zenodo.20681920
 ---
 
 # Summary
@@ -80,9 +80,11 @@ RogueGPT addresses this gap in three ways:
 
 2. **Complete provenance.** Every fragment is stored with the exact model
    identifier, prompt text, ISO language code, content format, journalistic style,
-   ingestion channel, and a UTC creation timestamp. This makes it possible to
-   reproduce any stimulus exactly and to filter the corpus along any experimental
-   axis at query time via the CLI or MCP API.
+   ingestion channel, sampling parameters (for newly generated fragments), and a UTC
+   creation timestamp. This makes it possible to reconstruct the conditions under
+   which any stimulus was produced
+   and to filter the corpus along any experimental axis at query time via the CLI
+   or MCP API.
 
 3. **Living corpus design.** Unlike frozen datasets, the corpus is designed to
    grow. The MCP server exposes `ingest_fragment` and `retrieve_fragments` as
@@ -101,8 +103,9 @@ RogueGPT-generated stimuli to human participants and records dual-axis perceptio
 judgements. Together, the three tools form an end-to-end pipeline from source
 identification through stimulus generation to quantitative perception measurement.
 
-RogueGPT is already in active use in peer-reviewed publications from the same
-research programme:
+RogueGPT is already in active use in the following peer-reviewed publications. All
+four originate from the authors' own research programme, which reflects the stage
+of adoption rather than a claim of external uptake:
 
 - *Industrialized Deception* [@loth2026industrialized] analyses the systemic
   effects of LLM-generated misinformation on digital ecosystems, using stimuli
@@ -117,8 +120,18 @@ research programme:
   methodology underpinning the generation pipeline.
 
 The full corpus produced by RogueGPT is archived on Zenodo
-(DOI: [10.5281/zenodo.18703138](https://doi.org/10.5281/zenodo.18703138)) and
-available for academic research under restricted access.
+(concept DOI: [10.5281/zenodo.18703137](https://doi.org/10.5281/zenodo.18703137),
+which always resolves to the current version) under restricted rather than open
+access. Access is granted to researchers at academic or non-profit institutions on
+request. The restriction has two reasons. The machine-generated fragments are
+released under CC BY 4.0, but the human-sourced fragments are excerpts of
+third-party news material that the depositor cannot license onward, and they are
+shared under the research exception for text and data mining, which limits sharing
+to researchers rather than the general public. The restriction also keeps a corpus
+of misinformation-like material from being distributed without an accountable
+requester. Every fragment records its own origin (`Origin`, `MachineModel`,
+`MachinePrompt`, source reference), so the machine-generated and human-sourced
+parts stay separable and independently filterable.
 
 # Key Features
 
@@ -140,8 +153,14 @@ Each fragment is stored with complete provenance metadata including model
 identifier, prompt text, ISO language code, content format, journalistic style,
 source outlet, and UTC timestamp. A shared validation layer enforces schema
 consistency across all three interfaces, ensuring that every fragment — regardless
-of ingestion path — carries the metadata required to reproduce experimental
-conditions exactly. The full schema specification is documented in the repository.
+of ingestion path — carries the metadata required to reproduce the experimental
+design. Newly generated fragments additionally record their sampling parameters
+alongside the model identifier and prompt, and the validator reports a warning
+when that field is absent, so fragments ingested before this was introduced remain
+identifiable as such. Exact regeneration of a given output remains outside the
+framework's control in any case, since commercial APIs are non-deterministic and
+providers revise models behind stable identifiers. The full schema specification is
+documented in the repository.
 
 ## Interfaces
 

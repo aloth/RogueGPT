@@ -5,6 +5,18 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- Generation now records its sampling parameters per fragment (`SamplingParams`), so the conditions under which a stimulus was produced can be reconstructed from the corpus rather than only from the source file. `validate_fragment` reports a warning when the field is absent, which keeps fragments ingested before this change identifiable as such instead of silently defaulting them.
+
+### Changed
+- `generate_batch.py` no longer hard-codes temperature and token limit in three separate provider calls; all three read from a single `SAMPLING` constant.
+- `paper/paper.md` and `paper/paper.bib` now reference the corpus by its concept DOI (10.5281/zenodo.18703137), which always resolves to the current version, and `archive_doi` points at the software concept DOI (10.5281/zenodo.20681920) rather than a single version.
+- The paper states the corpus access model explicitly: machine-generated fragments are CC BY 4.0, human-sourced fragments are third-party news excerpts that cannot be licensed onward and are shared under the research exception for text and data mining, and access is granted to researchers at academic or non-profit institutions on request. The README carries the same distinction where the corpus is introduced.
+- The paper no longer claims that stored metadata reproduces experimental conditions "exactly". Exact regeneration is outside the framework's control because commercial APIs are non-deterministic and providers revise models behind stable identifiers.
+- The research impact section states that all four cited uses originate from the authors' own research programme.
+
 ## [1.3.1] - 2026-08-28
 
 ### Fixed
