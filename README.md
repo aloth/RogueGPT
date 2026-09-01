@@ -3,7 +3,7 @@
 [![CI](https://github.com/aloth/RogueGPT/actions/workflows/ci.yml/badge.svg)](https://github.com/aloth/RogueGPT/actions/workflows/ci.yml)
 [![arXiv](https://img.shields.io/badge/arXiv-2601.21963-B31B1B.svg)](https://arxiv.org/abs/2601.21963)
 [![arXiv](https://img.shields.io/badge/arXiv-2601.22871-B31B1B.svg)](https://arxiv.org/abs/2601.22871)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21904524.svg)](https://doi.org/10.5281/zenodo.21904524)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22225536.svg)](https://doi.org/10.5281/zenodo.22225536)
 [![Status](https://img.shields.io/badge/status-active%20%26%20evolving-orange.svg)](https://github.com/aloth/RogueGPT)
 [![License](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![GitHub Stars](https://img.shields.io/github/stars/aloth/RogueGPT?style=social)](https://github.com/aloth/RogueGPT/stargazers)
@@ -111,7 +111,8 @@ The concept DOI [`10.5281/zenodo.18703137`](https://doi.org/10.5281/zenodo.18703
 
 | Version | Version DOI | Fragments | Snapshot | Status |
 |---|---|---|---|---|
-| 1.1.0 | [`10.5281/zenodo.21904524`](https://doi.org/10.5281/zenodo.21904524) | 3,278 | 23 Mar 2026 | Current |
+| 1.2.0 | [`10.5281/zenodo.22225536`](https://doi.org/10.5281/zenodo.22225536) | 3,278 | 23 Mar 2026 | Current |
+| 1.1.0 | [`10.5281/zenodo.21904524`](https://doi.org/10.5281/zenodo.21904524) | 3,278 | 23 Mar 2026 | Superseded |
 | 1.0.0 | [`10.5281/zenodo.18703138`](https://doi.org/10.5281/zenodo.18703138) | 2,308 | 19 Feb 2026 | Superseded |
 
 > **Note for machine learning use:** the corpus contains duplicate content under distinct fragment identifiers (545 rows across 196 repeated texts). Group by normalized text before creating train and test splits, otherwise a random split leaks training content into the test set.
@@ -146,7 +147,7 @@ Both categories are ingested via the RogueGPT CLI with full metadata (`--origin 
 
 RogueGPT operates as the first stage of a two-part experimental workflow:
 
-1. **Stimulus generation (RogueGPT):** Fragments are produced with explicit control over model, style, language, format, and seed phrase. All generation parameters are persisted alongside the content.
+1. **Stimulus generation (RogueGPT):** Fragments are produced with explicit control over model, style, language, format, and seed phrase. The model identifier, the full prompt and, for batch generation, the sampling parameters are persisted alongside the content. Fragments created through the web interface record model and prompt but not sampling settings, since that path uses provider defaults.
 2. **Storage (MongoDB):** Each fragment is stored with full provenance metadata, enabling reproducible filtering by any experimental variable.
 3. **Human evaluation ([JudgeGPT](https://github.com/aloth/JudgeGPT)):** Participants assess fragments on continuous dual-axis scales (source attribution and authenticity), producing quantitative perception data linked to generation parameters.
 4. **Analysis:** The combined dataset supports investigations into model-specific detectability, cross-linguistic perception differences, and the role of individual differences in judgment accuracy.
@@ -344,7 +345,7 @@ RogueGPT describes implemented functionality rather than a completed empirical e
 | Goal | Action |
 |:---|:---|
 | Understand the methodology | [Read the paper](https://arxiv.org/abs/2404.03021) |
-| Use the dataset | [Request access on Zenodo](https://doi.org/10.5281/zenodo.18703137) (current version: [`21904524`](https://doi.org/10.5281/zenodo.21904524)) |
+| Use the dataset | [Request access on Zenodo](https://doi.org/10.5281/zenodo.18703137) (current version: [`22225536`](https://doi.org/10.5281/zenodo.22225536)) |
 | Extend the corpus | Fork, add models, submit a PR |
 | Participate in the study | [JudgeGPT Survey](https://judgegpt.streamlit.app/) |
 | Contact the authors | [alexander.loth@stud.fra-uas.de](mailto:alexander.loth@stud.fra-uas.de) |
