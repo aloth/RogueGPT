@@ -139,7 +139,29 @@ def generate_anthropic(model: str, prompt: str) -> str:
 
 
 def generate(roguegpt_model: str, prompt: str) -> str:
-    """Route to the correct provider."""
+    """Route to the correct provider.
+
+    MODELS is deliberately a subset of prompt_engine.json. The registry names every
+    identifier the corpus may contain, including models generated through the web UI
+    or retired providers; this script can only drive the ones with a wired provider
+    call below. An identifier that is registered but not wired is reported as such
+    rather than raising a bare KeyError.
+    """
+    if roguegpt_model not in MODELS:
+        try:
+            import core
+            registered = roguegpt_model in core.get_valid_models()
+        except Exception:
+            registered = False
+        supported = ", ".join(sorted(MODELS))
+        if registered:
+            raise SystemExit(
+                f"Model '{roguegpt_model}' is registered in prompt_engine.json but batch "
+                f"generation cannot drive it. Batch generation supports: {supported}"
+            )
+        raise SystemExit(
+            f"Unknown model '{roguegpt_model}'. Batch generation supports: {supported}"
+        )
     cfg = MODELS[roguegpt_model]
     provider = cfg["provider"]
     model = cfg["model"]

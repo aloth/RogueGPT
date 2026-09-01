@@ -83,6 +83,19 @@ def render_ui(component_dict: dict, key_prefix: str = "") -> dict:
     return user_selections
 
 
+
+def _first_selection(selections) -> str:
+    """Return the first selected value as text, or "" when nothing is selected.
+
+    An empty multiselect yields [], which is falsy; returning the list itself here
+    made prompt.replace() raise `TypeError: replace() argument 2 must be str, not
+    list` before the user ever pressed Generate.
+    """
+    if isinstance(selections, list):
+        return str(selections[0]) if selections else ""
+    return str(selections) if selections else ""
+
+
 def collect_keys(component_dict: dict, collected_keys: list = []) -> list:
     """Recursively collects all keys from nested dictionaries."""
     for key, value in component_dict.items():
@@ -176,10 +189,21 @@ def automatic_news_generation_ui() -> None:
         user_selections[placeholder] = user_input_options
 
     prompt = prompt_template
+    missing_placeholders = []
     for placeholder, selections in user_selections.items():
         placeholder_key = f"[[{placeholder}]]"
-        selection_text = selections[0] if isinstance(selections, list) and selections else selections
+        selection_text = _first_selection(selections)
+        if not selection_text:
+            missing_placeholders.append(placeholder)
+            continue
         prompt = prompt.replace(placeholder_key, selection_text)
+
+    if missing_placeholders:
+        st.warning(
+            "Select at least one value for: "
+            + ", ".join(sorted(missing_placeholders))
+            + ". Generation is disabled until every placeholder is filled."
+        )
 
     st.write("Prompt Preview:", prompt)
 

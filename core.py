@@ -7,6 +7,7 @@ No UI dependencies. Used by both app.py (Streamlit) and mcp_server.py.
 
 import json
 import os
+import sys
 import uuid
 from datetime import datetime, timezone
 from importlib.metadata import PackageNotFoundError
@@ -19,9 +20,31 @@ from pymongo.server_api import ServerApi
 try:  # installed as a package -> single source of truth is pyproject.toml
     __version__ = _pkg_version("roguegpt")
 except PackageNotFoundError:  # running from a plain source checkout
-    __version__ = "1.3.1"
+    __version__ = "1.4.0"
 
-CONFIG_FILE = os.path.join(os.path.dirname(__file__), "prompt_engine.json")
+def _find_config() -> str:
+    """Locate prompt_engine.json in a source checkout or an installed environment.
+
+    The project uses a flat layout, so the file cannot travel as package-data (there
+    is no package to attach it to). It is installed as a data-file under
+    <prefix>/share/roguegpt instead, which is why both locations are searched.
+    """
+    candidates = [
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), "prompt_engine.json"),
+        os.path.join(sys.prefix, "share", "roguegpt", "prompt_engine.json"),
+        os.path.join(sys.base_prefix, "share", "roguegpt", "prompt_engine.json"),
+    ]
+    for candidate in candidates:
+        if os.path.isfile(candidate):
+            return candidate
+    raise FileNotFoundError(
+        "prompt_engine.json not found. Looked in:\n  "
+        + "\n  ".join(candidates)
+        + "\nReinstall the package or run from a source checkout."
+    )
+
+
+CONFIG_FILE = _find_config()
 
 # ─── Config ───────────────────────────────────────────────────────────
 

@@ -256,3 +256,41 @@ class TestNoCommand:
         """Calling roguegpt with no subcommand should exit non-zero."""
         _, _, code = run_cli(monkeypatch)
         assert code != 0
+
+
+# ---------------------------------------------------------------------------
+# Regression tests for reviewer-reported issues (JOSS review #11219)
+# ---------------------------------------------------------------------------
+
+class TestIsFakeBooleanParsing:
+    """#6: --is-fake false was parsed as True, because bool('false') is True."""
+
+    def test_false_parses_as_false(self):
+        assert cli._bool_arg("false") is False
+        assert cli._bool_arg("False") is False
+        assert cli._bool_arg("no") is False
+        assert cli._bool_arg("0") is False
+
+    def test_true_parses_as_true(self):
+        assert cli._bool_arg("true") is True
+        assert cli._bool_arg("True") is True
+        assert cli._bool_arg("yes") is True
+        assert cli._bool_arg("1") is True
+
+    def test_invalid_value_is_rejected(self):
+        import argparse
+        import pytest
+        with pytest.raises(argparse.ArgumentTypeError):
+            cli._bool_arg("maybe")
+
+    def test_retrieve_passes_false_through(self, monkeypatch):
+        """The parsed value must reach core.get_random_fragments as False."""
+        seen = {}
+
+        def fake_get_random_fragments(**kwargs):
+            seen.update(kwargs)
+            return []
+
+        monkeypatch.setattr(cli.core, "get_random_fragments", fake_get_random_fragments)
+        run_cli(monkeypatch, "retrieve", "--is-fake", "false")
+        assert seen["is_fake"] is False

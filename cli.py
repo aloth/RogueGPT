@@ -18,6 +18,22 @@ sys.path.insert(0, os.path.dirname(__file__))
 import core
 
 
+def _bool_arg(value: str) -> bool:
+    """Parse a true/false command-line value.
+
+    `type=bool` cannot be used here: bool("false") is True, so --is-fake false
+    silently selected the opposite set of fragments.
+    """
+    lowered = value.strip().lower()
+    if lowered in ("true", "t", "yes", "y", "1"):
+        return True
+    if lowered in ("false", "f", "no", "n", "0"):
+        return False
+    raise argparse.ArgumentTypeError(
+        f"expected true or false, got {value!r}"
+    )
+
+
 def cmd_ingest(args):
     fragment = {
         "Content": args.content,
@@ -89,7 +105,13 @@ def main():
     p_retrieve.add_argument("--origin", default=None)
     p_retrieve.add_argument("--model", default=None)
     p_retrieve.add_argument("--lang", default=None)
-    p_retrieve.add_argument("--is-fake", type=bool, default=None)
+    p_retrieve.add_argument(
+        "--is-fake",
+        type=_bool_arg,
+        default=None,
+        metavar="{true,false}",
+        help="Filter by veracity label. argparse's bool() would treat any non-empty string, including 'false', as True.",
+    )
     p_retrieve.set_defaults(func=cmd_retrieve)
 
     # stats
