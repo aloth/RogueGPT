@@ -5,17 +5,32 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.4.0] - 2026-09-01
 
-### Added
-- Generation now records its sampling parameters per fragment (`SamplingParams`), so the conditions under which a stimulus was produced can be reconstructed from the corpus rather than only from the source file. `validate_fragment` reports a warning when the field is absent, which keeps fragments ingested before this change identifiable as such instead of silently defaulting them.
+This release closes the remaining review items from both reviewers. The sampling-parameter, access-model and provenance changes were committed after v1.3.1 and had not been tagged.
+
+### Fixed
+- The wheel did not contain `prompt_engine.json`, so `roguegpt models` failed with `FileNotFoundError` on any installed copy and only worked from a source checkout. The project uses a flat layout with no package directory, so `[tool.setuptools.package-data]` had no package to attach the file to and setuptools dropped it silently. It is now installed as a data-file under `share/roguegpt`, and `core.py` resolves it through a search that covers both a source checkout and an installed environment. Reported in #5.
+- `roguegpt retrieve --is-fake false` returned fragments labelled true. The argument used `type=bool`, and `bool("false")` is `True`, so any value selected the true set. A dedicated parser now accepts true/false, yes/no, 1/0 and rejects anything else. Reported in #6.
+- Clearing every option from "Choose Format" crashed the Streamlit app with `TypeError: replace() argument 2 must be str, not list`, before any generation was requested. The guard that was meant to catch this returned the empty list itself, because an empty list is falsy and fell through to the wrong branch. Empty selections now yield an empty string and the interface reports which placeholders are still unfilled. Reported in #7.
+- Batch generation raised a bare `KeyError` for model identifiers that exist in `prompt_engine.json` but are not wired into `generate_batch.py`. The registry lists every identifier the corpus may contain; the batch script can only drive those with a provider call. Registered but undriveable identifiers are now reported as such, unknown ones separately, both with the list of supported models. Reported in #10.
 
 ### Changed
+- The paper and README no longer claim that "all experimental parameters" or "all generation parameters" are recorded. Batch generation persists model, prompt and sampling parameters; the web interface persists model and prompt but delegates sampling to provider defaults. Both documents now state which interface records what. Reported in #8.
+- `paper/paper.md` described the human-sourced fragments as traceable through the linked JudgeGPT deposit, which was a description of a defective export rather than of the design. The corpus deposit now carries `HumanOutlet`, `HumanURL` and `IngestedVia` itself, and the paper says so.
+- Dataset references point at the current corpus release, 10.5281/zenodo.22225536 (v1.2.0), and the companion perception deposit at 10.5281/zenodo.22226580 (v1.2.0).
+- `CITATION.cff` cited the corpus DOI while describing the software. It now carries the software concept DOI 10.5281/zenodo.20681920, as does the `DOI` project URL in `pyproject.toml`.
 - `generate_batch.py` no longer hard-codes temperature and token limit in three separate provider calls; all three read from a single `SAMPLING` constant.
-- `paper/paper.md` and `paper/paper.bib` now reference the corpus by its concept DOI (10.5281/zenodo.18703137), which always resolves to the current version, and `archive_doi` points at the software concept DOI (10.5281/zenodo.20681920) rather than a single version.
 - The paper states the corpus access model explicitly: machine-generated fragments are CC BY 4.0, human-sourced fragments are third-party news excerpts that cannot be licensed onward and are shared under the research exception for text and data mining, and access is granted to researchers at academic or non-profit institutions on request. The README carries the same distinction where the corpus is introduced.
 - The paper no longer claims that stored metadata reproduces experimental conditions "exactly". Exact regeneration is outside the framework's control because commercial APIs are non-deterministic and providers revise models behind stable identifiers.
 - The research impact section states that all four cited uses originate from the authors' own research programme.
+
+### Fixed (paper)
+- MULTITuDE was described as covering "11 generators across 11 languages". The original publication reports 8 multilingual LLMs across 11 languages. The bibliography entry also carried an author list that did not match the ACL record; it now follows the official metadata. Reported in #9.
+
+### Added
+- Regression tests for the boolean argument parsing in `tests/test_cli.py`.
+- Generation records its sampling parameters per fragment (`SamplingParams`), so the conditions under which a stimulus was produced can be reconstructed from the corpus rather than only from the source file. `validate_fragment` warns when the field is absent, which keeps fragments ingested before this change identifiable instead of silently defaulting them.
 
 ## [1.3.1] - 2026-08-28
 
