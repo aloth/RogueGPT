@@ -5,6 +5,16 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+- The M4 reference listed seven authors, five of whom do not appear on the publication, while thirteen of the actual authors were missing. Every entry in `paper/paper.bib` has since been verified against Crossref or DataCite. Also corrected: the page range of Eroding the Truth-Default, the creator lists and titles of both dataset entries, and the title, year and version of the CRED-1 entry. Raised in the JOSS review.
+- The paper stated that Eroding the Truth-Default reported 320 participants. The cited paper reports 154 participants and 918 evaluations. Raised in the JOSS review.
+- The AI usage disclosure named neither the system nor its version and covered only the software. It now identifies Claude Opus 4.8 through GitHub Copilot, separates software from manuscript use, and states what no AI system was used for. Raised in the JOSS review.
+
+### Changed
+- Self-citation keys follow the canonical BibTeX source used across the research programme, which also separates the two Origin Lens publications that previously shared a key.
+
 ## [1.4.0] - 2026-09-01
 
 This release closes the remaining review items from both reviewers. The sampling-parameter, access-model and provenance changes were committed after v1.3.1 and had not been tagged.
