@@ -5,12 +5,13 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.4.1] - 2026-09-08
 
 ### Fixed
 - The M4 reference listed seven authors, five of whom do not appear on the publication, while thirteen of the actual authors were missing. Every entry in `paper/paper.bib` has since been verified against Crossref or DataCite. Also corrected: the page range of Eroding the Truth-Default, the creator lists and titles of both dataset entries, and the title, year and version of the CRED-1 entry. Raised in the JOSS review.
 - The paper stated that Eroding the Truth-Default reported 320 participants. The cited paper reports 154 participants and 918 evaluations. Raised in the JOSS review.
 - The AI usage disclosure named neither the system nor its version and covered only the software. It now identifies Claude Opus 4.8 through GitHub Copilot, separates software from manuscript use, and states what no AI system was used for. Raised in the JOSS review.
+- `CITATION.cff` carried the corpus concept DOI in its top-level `doi` field while declaring `type: software`. It now carries the software concept DOI 10.5281/zenodo.20681920, matching `pyproject.toml`. The corpus DOIs remain in the `identifiers` block, where they describe the corpus rather than the software.
 
 ### Changed
 - Self-citation keys follow the canonical BibTeX source used across the research programme, which also separates the two Origin Lens publications that previously shared a key.
@@ -100,6 +101,8 @@ This release closes the remaining review items from both reviewers. The sampling
 ### Added
 - Initial stable release: controlled AI news stimulus generation for JudgeGPT.
 
+[1.4.1]: https://github.com/aloth/RogueGPT/releases/tag/v1.4.1
+[1.4.0]: https://github.com/aloth/RogueGPT/releases/tag/v1.4.0
 [1.3.1]: https://github.com/aloth/RogueGPT/releases/tag/v1.3.1
 [1.3.0]: https://github.com/aloth/RogueGPT/releases/tag/v1.3.0
 [1.2.0]: https://github.com/aloth/RogueGPT/releases/tag/v1.2.0
