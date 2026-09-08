@@ -5,6 +5,14 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.2] - 2026-09-08
+
+Paper text only, raised by the JOSS editor during the acceptance check. No code, no metadata and no dependency changes.
+
+### Changed
+- The list of legitimate news outlets wrote "Guardian" where the newspaper's name is *The Guardian*.
+- The MCP integration was described as "the first such interface for a research corpus management system". Even with a "to our knowledge" qualifier, that asserts a fact about the field rather than about what the authors have seen. It now states that the authors are not aware of another research corpus management system exposing such an interface, which is the same information without the priority claim.
+
 ## [1.4.1] - 2026-09-08
 
 ### Fixed
@@ -101,6 +109,7 @@ This release closes the remaining review items from both reviewers. The sampling
 ### Added
 - Initial stable release: controlled AI news stimulus generation for JudgeGPT.
 
+[1.4.2]: https://github.com/aloth/RogueGPT/releases/tag/v1.4.2
 [1.4.1]: https://github.com/aloth/RogueGPT/releases/tag/v1.4.1
 [1.4.0]: https://github.com/aloth/RogueGPT/releases/tag/v1.4.0
 [1.3.1]: https://github.com/aloth/RogueGPT/releases/tag/v1.3.1

@@ -185,7 +185,7 @@ the corpus as part of larger automated research pipelines.
 Human-written fragments are sourced from two pools:
 
 - **Legitimate news:** Opening paragraphs from established international outlets
-  (BBC, Guardian, Reuters, Tagesschau, FAZ, Le Monde, El País) via RSS feeds.
+  (BBC, The Guardian, Reuters, Tagesschau, FAZ, Le Monde, El País) via RSS feeds.
 - **Fake news:** Articles scraped from domains classified as *fake*, *unreliable*,
   or *conspiracy* by the CRED-1 Domain Credibility Dataset [@loth2026cred1data],
   which scores 2,672 domains using editorial classification, fact-check claims,
@@ -247,9 +247,9 @@ RogueGPT differs from all of these in three respects: (1) it is an active
 generation infrastructure rather than a frozen benchmark, supporting incremental
 corpus expansion as new models are released; (2) it stores complete generation
 provenance per fragment, enabling fine-grained experimental filtering by model,
-language, style, and format; and (3) its MCP integration is, to our knowledge,
-the first such interface for a research corpus management system, enabling direct
-use within AI agent workflows.
+language, style, and format; and (3) its MCP integration enables direct
+use within AI agent workflows; we are not aware of another research corpus
+management system that exposes such an interface.
 
 # Research Impact Statement
 
