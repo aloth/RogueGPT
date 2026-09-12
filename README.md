@@ -1,5 +1,6 @@
 # RogueGPT: A Controlled Stimulus Generation Framework for News Authenticity Research
 
+[![JOSS](https://joss.theoj.org/papers/10.21105/joss.11219/status.svg)](https://doi.org/10.21105/joss.11219)
 [![CI](https://github.com/aloth/RogueGPT/actions/workflows/ci.yml/badge.svg)](https://github.com/aloth/RogueGPT/actions/workflows/ci.yml)
 [![arXiv](https://img.shields.io/badge/arXiv-2601.21963-B31B1B.svg)](https://arxiv.org/abs/2601.21963)
 [![arXiv](https://img.shields.io/badge/arXiv-2601.22871-B31B1B.svg)](https://arxiv.org/abs/2601.22871)
@@ -362,6 +363,20 @@ All responses are treated confidentially and reported in anonymized, aggregated 
 If you use RogueGPT or its dataset in your work, please cite:
 
 ```bibtex
+@article{loth2026roguegptjoss,
+    author    = {Loth, Alexander and Kappes, Martin and Pahl, Marc-Oliver},
+    title     = {{RogueGPT}: A Controlled Stimulus Generation Framework for
+                 News Authenticity Research},
+    journal   = {Journal of Open Source Software},
+    year      = {2026},
+    volume    = {11},
+    number    = {125},
+    pages     = {11219},
+    publisher = {The Open Journal},
+    doi       = {10.21105/joss.11219},
+    url       = {https://doi.org/10.21105/joss.11219}
+}
+
 @inproceedings{loth2026collateraleffects,
     author    = {Loth, Alexander and Kappes, Martin and Pahl, Marc-Oliver},
     title     = {Industrialized Deception: The Collateral Effects of

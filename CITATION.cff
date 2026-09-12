@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 title: "RogueGPT: A Controlled Stimulus Generation Framework for News Authenticity Research"
-message: "If you use RogueGPT, please cite the paper below. If you use the generated stimulus corpus, please also cite the dataset version you worked with (concept doi:10.5281/zenodo.18703137)."
+message: "If you use RogueGPT, please cite the JOSS paper below. If you use the generated stimulus corpus, please also cite the dataset version you worked with (concept doi:10.5281/zenodo.18703137)."
 type: software
 version: "1.4.2"
 date-released: "2026-09-08"
@@ -90,6 +90,9 @@ references:
         value: "arXiv:2608.21389"
 identifiers:
   - type: doi
+    value: 10.21105/joss.11219
+    description: "DOI of the JOSS paper describing the framework"
+  - type: doi
     value: 10.5281/zenodo.18703137
     description: "Zenodo concept DOI for the RogueGPT Stimulus Corpus (always resolves to the latest version)"
   - type: doi
@@ -97,27 +100,29 @@ identifiers:
     description: "Zenodo version DOI for the corpus (v1.2.0, released 2026-09-01)"
   - type: doi
     value: 10.1145/3774905.3795471
-    description: "ACM DOI of the paper describing the framework"
+    description: "ACM DOI of the WWW '26 paper on the collateral effects studied with this framework"
 preferred-citation:
-  type: conference-paper
+  type: article
   title: >
-    Industrialized Deception: The Collateral Effects of LLM-Generated Misinformation
-    on Digital Ecosystems
+    RogueGPT: A Controlled Stimulus Generation Framework for News Authenticity
+    Research
   authors:
     - family-names: Loth
       given-names: Alexander
       orcid: "https://orcid.org/0009-0003-9327-6865"
     - family-names: Kappes
       given-names: Martin
+      orcid: "https://orcid.org/0000-0002-8768-8359"
     - family-names: Pahl
       given-names: Marc-Oliver
       orcid: "https://orcid.org/0000-0001-5241-3809"
-  collection-title: "Companion Proceedings of the ACM Web Conference 2026 (WWW '26 Companion)"
+  journal: "Journal of Open Source Software"
   year: 2026
-  month: 6
+  month: 9
+  volume: 11
+  issue: 125
+  start: 11219
   publisher:
-    name: ACM
-  location:
-    name: "Dubai, United Arab Emirates"
-  doi: "10.1145/3774905.3795471"
-  url: "https://arxiv.org/abs/2601.21963"
+    name: "The Open Journal"
+  doi: "10.21105/joss.11219"
+  url: "https://doi.org/10.21105/joss.11219"

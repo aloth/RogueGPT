@@ -28,14 +28,15 @@
   "codeRepository": "https://github.com/aloth/RogueGPT",
   "license": "https://www.gnu.org/licenses/gpl-3.0",
   "isAccessibleForFree": true,
-  "identifier": "https://doi.org/10.5281/zenodo.18703137",
+  "identifier": "https://doi.org/10.21105/joss.11219",
   "citation": [
-    { "@type": "ScholarlyArticle", "name": "RogueGPT: A Controlled Stimulus Generation Framework for News Authenticity Research", "url": "https://arxiv.org/abs/2601.21963" },
-    { "@type": "ScholarlyArticle", "name": "JudgeGPT: An Empirical Platform for Evaluating News Authenticity in the Age of AI", "url": "https://arxiv.org/abs/2601.22871" },
+    { "@type": "ScholarlyArticle", "name": "RogueGPT: A Controlled Stimulus Generation Framework for News Authenticity Research", "url": "https://doi.org/10.21105/joss.11219" },
+    { "@type": "ScholarlyArticle", "name": "Industrialized Deception: The Collateral Effects of LLM-Generated Misinformation on Digital Ecosystems", "url": "https://arxiv.org/abs/2601.21963" },
+    { "@type": "ScholarlyArticle", "name": "Eroding the Truth-Default: A Causal Analysis of Human Susceptibility to Foundation Model Hallucinations and Disinformation in the Wild", "url": "https://arxiv.org/abs/2601.22871" },
     { "@type": "ScholarlyArticle", "url": "https://arxiv.org/abs/2404.03021" },
     { "@type": "Dataset", "name": "RogueGPT stimulus dataset", "url": "https://doi.org/10.5281/zenodo.18703137" }
   ],
-  "sameAs": ["https://doi.org/10.5281/zenodo.18703137", "https://github.com/aloth/JudgeGPT"]
+  "sameAs": ["https://doi.org/10.21105/joss.11219", "https://doi.org/10.5281/zenodo.18703137", "https://github.com/aloth/JudgeGPT"]
 }
 </script>
 <style>
@@ -63,6 +64,10 @@ h1 span{color:var(--accent)}
 .cta{text-align:center;padding:50px 24px}
 .paper{text-align:center;padding:0 24px 40px;color:var(--muted);font-size:15px}
 .paper a{color:var(--accent)}
+.cite{max-width:680px;margin:0 auto 44px;padding:26px 28px;background:var(--card);border-radius:16px;border:1px solid #e8edf3}
+.cite h2{font-size:22px;margin-bottom:6px;text-align:center}
+.cite p{font-size:15px;color:var(--muted);text-align:center;margin-bottom:16px}
+.cite pre{background:var(--bg);border-radius:10px;padding:16px;overflow-x:auto;font-size:13px;line-height:1.5;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
 footer{text-align:center;padding:40px 24px;color:var(--muted);font-size:14px;border-top:1px solid #e8edf3}
 footer a{color:var(--accent);text-decoration:none}
 </style>
@@ -73,8 +78,9 @@ footer a{color:var(--accent);text-decoration:none}
   <div class="hero-badge">🧪 Multi-model · Multilingual · Full provenance</div>
   <h1>Controlled AI news stimuli,<br><span>built for research.</span></h1>
   <p class="lead">RogueGPT is a modular, model-agnostic framework for generating diverse, reproducible AI news stimuli under controlled experimental conditions - connecting static text generation with agent-based simulation of misinformation diffusion.</p>
+  <p><a href="https://doi.org/10.21105/joss.11219"><img src="https://joss.theoj.org/papers/10.21105/joss.11219/status.svg" alt="Published in the Journal of Open Source Software: 10.21105/joss.11219" height="20"></a></p>
   <a href="https://github.com/aloth/RogueGPT" class="btn">View on GitHub</a>
-  <a href="https://arxiv.org/abs/2601.21963" class="btn alt">Read the Paper</a>
+  <a href="https://doi.org/10.21105/joss.11219" class="btn alt">Read the Paper</a>
   <img src="https://raw.githubusercontent.com/aloth/RogueGPT/main/figures/roguegpt-ai-fake-news-generation-pipeline-wide.png" alt="RogueGPT controlled AI stimulus generation pipeline for fake news research" class="hero-image" loading="eager">
 </section>
 
@@ -95,7 +101,25 @@ footer a{color:var(--accent);text-decoration:none}
   <a href="https://github.com/aloth/JudgeGPT" class="btn alt">Explore JudgeGPT</a>
 </section>
 
-<p class="paper">Papers: <a href="https://arxiv.org/abs/2404.03021">Survey (arXiv:2404.03021)</a> · <a href="https://arxiv.org/abs/2601.21963">Industrialized Deception (2601.21963)</a> · <a href="https://arxiv.org/abs/2601.22871">Eroding the Truth-Default (2601.22871)</a> · Data: <a href="https://doi.org/10.5281/zenodo.18703138">Zenodo</a></p>
+<section class="cite">
+  <h2>Citation</h2>
+  <p>RogueGPT is published in the Journal of Open Source Software. If you use it, please cite:</p>
+  <pre>@article{loth2026roguegptjoss,
+    author    = {Loth, Alexander and Kappes, Martin and Pahl, Marc-Oliver},
+    title     = {{RogueGPT}: A Controlled Stimulus Generation Framework for
+                 News Authenticity Research},
+    journal   = {Journal of Open Source Software},
+    year      = {2026},
+    volume    = {11},
+    number    = {125},
+    pages     = {11219},
+    publisher = {The Open Journal},
+    doi       = {10.21105/joss.11219},
+    url       = {https://doi.org/10.21105/joss.11219}
+}</pre>
+</section>
+
+<p class="paper">Paper: <a href="https://doi.org/10.21105/joss.11219">JOSS 11(125), 11219</a> · Related: <a href="https://arxiv.org/abs/2404.03021">Survey (arXiv:2404.03021)</a> · <a href="https://arxiv.org/abs/2601.21963">Industrialized Deception (2601.21963)</a> · <a href="https://arxiv.org/abs/2601.22871">Eroding the Truth-Default (2601.22871)</a> · Data: <a href="https://doi.org/10.5281/zenodo.18703138">Zenodo</a></p>
 
 <footer>
   <p>RogueGPT by <a href="https://alexloth.com/">Alexander Loth</a> · <a href="https://github.com/aloth/RogueGPT">GitHub</a> · <a href="https://mastodon.social/@xlth">Mastodon</a></p>
