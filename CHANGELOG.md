@@ -5,6 +5,14 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.3] - 2026-09-30
+
+Documentation release. No code, data or dependency changes.
+
+### Changed
+- The README and CITATION.cff cite the RogueGPT Stimulus Corpus at its current version 1.2.1 (10.5281/zenodo.23053786). The concept DOI 10.5281/zenodo.18703137 continues to resolve to the latest version.
+- The dataset section names the concept DOI and the current version DOI instead of listing every release.
+
 ## [1.4.2] - 2026-09-08
 
 Paper text only, raised by the JOSS editor during the acceptance check. No code, no metadata and no dependency changes.

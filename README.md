@@ -11,7 +11,7 @@
 [![Mastodon](https://img.shields.io/badge/Mastodon-@xlth-6364FF?logo=mastodon&logoColor=white)](https://mastodon.social/@xlth)
 
 <p align="center">
-  <img src="figures/roguegpt-ai-fake-news-generation-pipeline-wide.png" alt="RogueGPT — Controlled AI stimulus generation pipeline for fake news research" width="700">
+  <img src="figures/roguegpt-ai-fake-news-generation-pipeline-wide.png" alt="RogueGPT - Controlled AI stimulus generation pipeline for fake news research" width="700">
 </p>
 
 ## What This Is
@@ -106,15 +106,9 @@ The corpus is available on Zenodo under restricted access for academic research.
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18703137.svg)](https://doi.org/10.5281/zenodo.18703137)
 
-### Dataset versions
+### Citing a version
 
-The concept DOI [`10.5281/zenodo.18703137`](https://doi.org/10.5281/zenodo.18703137) always resolves to the latest version. Cite a version DOI when your analysis has to be reproducible.
-
-| Version | Version DOI | Fragments | Snapshot | Status |
-|---|---|---|---|---|
-| 1.2.0 | [`10.5281/zenodo.22225536`](https://doi.org/10.5281/zenodo.22225536) | 3,278 | 23 Mar 2026 | Current |
-| 1.1.0 | [`10.5281/zenodo.21904524`](https://doi.org/10.5281/zenodo.21904524) | 3,278 | 23 Mar 2026 | Superseded |
-| 1.0.0 | [`10.5281/zenodo.18703138`](https://doi.org/10.5281/zenodo.18703138) | 2,308 | 19 Feb 2026 | Superseded |
+The concept DOI [`10.5281/zenodo.18703137`](https://doi.org/10.5281/zenodo.18703137) always resolves to the latest version. The current version is 1.2.1, [`10.5281/zenodo.23053786`](https://doi.org/10.5281/zenodo.23053786) (3,278 fragments, snapshot of 23 March 2026). Cite the version DOI when your analysis has to be reproducible.
 
 > **Note for machine learning use:** the corpus contains duplicate content under distinct fragment identifiers (545 rows across 196 repeated texts). Group by normalized text before creating train and test splits, otherwise a random split leaks training content into the test set.
 
@@ -346,7 +340,7 @@ RogueGPT describes implemented functionality rather than a completed empirical e
 | Goal | Action |
 |:---|:---|
 | Understand the methodology | [Read the paper](https://arxiv.org/abs/2404.03021) |
-| Use the dataset | [Request access on Zenodo](https://doi.org/10.5281/zenodo.18703137) (current version: [`22225536`](https://doi.org/10.5281/zenodo.22225536)) |
+| Use the dataset | [Request access on Zenodo](https://doi.org/10.5281/zenodo.18703137) (current version: [`23053786`](https://doi.org/10.5281/zenodo.23053786)) |
 | Extend the corpus | Fork, add models, submit a PR |
 | Participate in the study | [JudgeGPT Survey](https://judgegpt.streamlit.app/) |
 | Contact the authors | [alexander.loth@stud.fra-uas.de](mailto:alexander.loth@stud.fra-uas.de) |

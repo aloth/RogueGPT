@@ -2,8 +2,8 @@ cff-version: 1.2.0
 title: "RogueGPT: A Controlled Stimulus Generation Framework for News Authenticity Research"
 message: "If you use RogueGPT, please cite the JOSS paper below. If you use the generated stimulus corpus, please also cite the dataset version you worked with (concept doi:10.5281/zenodo.18703137)."
 type: software
-version: "1.4.2"
-date-released: "2026-09-08"
+version: "1.4.3"
+date-released: "2026-09-30"
 license: GPL-3.0-or-later
 repository-code: "https://github.com/aloth/RogueGPT"
 doi: "10.5281/zenodo.20681920"
@@ -96,8 +96,8 @@ identifiers:
     value: 10.5281/zenodo.18703137
     description: "Zenodo concept DOI for the RogueGPT Stimulus Corpus (always resolves to the latest version)"
   - type: doi
-    value: 10.5281/zenodo.22225536
-    description: "Zenodo version DOI for the corpus (v1.2.0, released 2026-09-01)"
+    value: 10.5281/zenodo.23053786
+    description: "Zenodo version DOI for the corpus (v1.2.1, released 2026-09-30)"
   - type: doi
     value: 10.1145/3774905.3795471
     description: "ACM DOI of the WWW '26 paper on the collateral effects studied with this framework"

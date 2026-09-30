@@ -20,7 +20,7 @@ from pymongo.server_api import ServerApi
 try:  # installed as a package -> single source of truth is pyproject.toml
     __version__ = _pkg_version("roguegpt")
 except PackageNotFoundError:  # running from a plain source checkout
-    __version__ = "1.4.2"
+    __version__ = "1.4.3"
 
 def _find_config() -> str:
     """Locate prompt_engine.json in a source checkout or an installed environment.
