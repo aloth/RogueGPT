@@ -5,6 +5,11 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+- The `server.json` description was 103 characters long, and the MCP registry accepts at most 100, so the 1.5.0 release reached PyPI but not the registry. It is shortened, a test checks `server.json` against the registry limits and against `pyproject.toml`, and `publish.yml` can be started by hand to list a version that is already on PyPI.
+
 ## [1.5.0] - 2026-11-07
 
 ### Added

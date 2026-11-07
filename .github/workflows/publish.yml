@@ -3,16 +3,22 @@ name: Publish to PyPI
 # Runs on a v* tag. Builds the sdist and wheel, checks that the tag matches the
 # version in pyproject.toml, publishes with PyPI trusted publishing (OIDC, no
 # stored token), then lists the MCP server in the official MCP registry.
+#
+# A manual run (workflow_dispatch) skips build and PyPI and only lists the
+# version in server.json in the MCP registry, for when that step failed after a
+# successful PyPI release. It refuses unless that version is already on PyPI.
 on:
   push:
     tags:
       - 'v*'
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
   build:
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -54,6 +60,7 @@ jobs:
 
   publish-pypi:
     needs: build
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     environment: pypi
     permissions:
@@ -69,6 +76,7 @@ jobs:
   # Separate job, so a registry outage never blocks the PyPI release.
   publish-mcp-registry:
     needs: publish-pypi
+    if: ${{ !cancelled() && (github.event_name == 'workflow_dispatch' || needs.publish-pypi.result == 'success') }}
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -76,6 +84,12 @@ jobs:
       MCP_PUBLISHER_VERSION: v1.8.4
     steps:
       - uses: actions/checkout@v4
+
+      - name: Check that the server.json version is on PyPI
+        run: |
+          V=$(jq -r '.version' server.json)
+          curl --fail --silent --show-error "https://pypi.org/pypi/roguegpt/$V/json" > /dev/null
+          echo "roguegpt $V is on PyPI"
 
       - name: Install cosign
         uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6 # v4.1.2

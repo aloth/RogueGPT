@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.aloth/roguegpt",
   "title": "RogueGPT",
-  "description": "Store and retrieve controlled AI news stimuli with full generation metadata for misinformation research",
+  "description": "Store and retrieve controlled AI news stimuli with generation metadata for misinformation research",
   "repository": {
     "url": "https://github.com/aloth/RogueGPT",
     "source": "github",
