@@ -1,6 +1,7 @@
 # RogueGPT: A Controlled Stimulus Generation Framework for News Authenticity Research
 
 [![JOSS](https://joss.theoj.org/papers/10.21105/joss.11219/status.svg)](https://doi.org/10.21105/joss.11219)
+[![PyPI](https://img.shields.io/pypi/v/roguegpt)](https://pypi.org/project/roguegpt/)
 [![CI](https://github.com/aloth/RogueGPT/actions/workflows/ci.yml/badge.svg)](https://github.com/aloth/RogueGPT/actions/workflows/ci.yml)
 [![arXiv](https://img.shields.io/badge/arXiv-2601.21963-B31B1B.svg)](https://arxiv.org/abs/2601.21963)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18703137.svg)](https://doi.org/10.5281/zenodo.18703137)
@@ -11,6 +12,8 @@
 </p>
 
 > **If RogueGPT is useful for your research, please [cite the JOSS paper](#citation) and star the repository.** GitHub's "Cite this repository" button in the sidebar gives the reference in APA and BibTeX.
+
+**Install:** `pip install roguegpt`, or `pip install "roguegpt[mcp]"` with the MCP server. See [Installation](#installation).
 
 ## What This Is
 

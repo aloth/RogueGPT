@@ -17,3 +17,9 @@ def test_landing_page_title_and_social_title_have_no_em_dash():
 def test_sitemap_lists_the_landing_page_with_a_date():
     sitemap = (DOCS / "sitemap.xml").read_text(encoding="utf-8")
     assert re.search(r"<lastmod>\d{4}-\d{2}-\d{2}</lastmod>", sitemap)
+
+
+def test_landing_page_shows_the_pip_install_command_and_links_pypi():
+    html = (DOCS / "index.html").read_text(encoding="utf-8")
+    assert "pip install roguegpt" in html
+    assert '"downloadUrl": "https://pypi.org/project/roguegpt/"' in html

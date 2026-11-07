@@ -26,6 +26,7 @@
   "description": "RogueGPT is a modular multi-model framework for generating controllable AI news stimuli for misinformation research. Agent-based simulation seeding, red-teaming and human-perception studies across multiple LLM families, multilingual with full provenance.",
   "url": "https://aloth.github.io/RogueGPT/",
   "codeRepository": "https://github.com/aloth/RogueGPT",
+  "downloadUrl": "https://pypi.org/project/roguegpt/",
   "license": "https://www.gnu.org/licenses/gpl-3.0",
   "isAccessibleForFree": true,
   "identifier": "https://doi.org/10.21105/joss.11219",
@@ -67,6 +68,8 @@ h1 span{color:var(--accent)}
 .cite{max-width:680px;margin:0 auto 44px;padding:26px 28px;background:var(--card);border-radius:16px;border:1px solid #e8edf3}
 .cite h2{font-size:22px;margin-bottom:6px;text-align:center}
 .cite p{font-size:15px;color:var(--muted);text-align:center;margin-bottom:16px}
+.install{max-width:520px;margin:18px auto 6px;text-align:left}
+.install pre{background:var(--card);border-radius:10px;padding:14px 16px;overflow-x:auto;font-size:14px;line-height:1.6;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
 .cite pre{background:var(--bg);border-radius:10px;padding:16px;overflow-x:auto;font-size:13px;line-height:1.5;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
 footer{text-align:center;padding:40px 24px;color:var(--muted);font-size:14px;border-top:1px solid #e8edf3}
 footer a{color:var(--accent);text-decoration:none}
@@ -81,6 +84,8 @@ footer a{color:var(--accent);text-decoration:none}
   <p><a href="https://doi.org/10.21105/joss.11219"><img src="https://joss.theoj.org/papers/10.21105/joss.11219/status.svg" alt="Published in the Journal of Open Source Software: 10.21105/joss.11219" height="20"></a></p>
   <a href="https://github.com/aloth/RogueGPT" class="btn">View on GitHub</a>
   <a href="https://doi.org/10.21105/joss.11219" class="btn alt">Read the Paper</a>
+  <div class="install"><pre>pip install roguegpt
+pip install "roguegpt[mcp]"   # with the MCP server</pre></div>
   <img src="https://raw.githubusercontent.com/aloth/RogueGPT/main/figures/roguegpt-ai-fake-news-generation-pipeline-wide.png" alt="RogueGPT controlled AI stimulus generation pipeline for fake news research" class="hero-image" loading="eager">
 </section>
 
