@@ -5,12 +5,18 @@ was 103 characters long; the registry rejects anything over 100.
 """
 import json
 import re
-import tomllib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SERVER = json.loads((ROOT / "server.json").read_text(encoding="utf-8"))
-PROJECT = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))["project"]
+# tomllib needs Python 3.11; the package supports 3.10, so read the two fields
+# from the [project] table directly.
+_PYPROJECT = (ROOT / "pyproject.toml").read_text(encoding="utf-8")
+_PROJECT_TABLE = _PYPROJECT.split("[project]", 1)[1].split("\n[", 1)[0]
+PROJECT = {
+    key: re.search(rf'^{key}\s*=\s*"([^"]+)"', _PROJECT_TABLE, re.M).group(1)
+    for key in ("name", "version")
+}
 
 
 def test_description_fits_the_registry_limit():
