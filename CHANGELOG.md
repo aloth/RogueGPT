@@ -5,6 +5,17 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] - 2026-11-07
+
+### Added
+- **Install from PyPI** with `pip install roguegpt`, or `pip install "roguegpt[mcp]"` for the MCP server. Releases are published from a tag by GitHub Actions with PyPI trusted publishing, so no token is stored.
+- **`roguegpt mcp` and `roguegpt-mcp`** start the MCP server; `uvx --from "roguegpt[mcp]" roguegpt mcp` runs it without a manual install.
+- **MCP registry listing** as `io.github.aloth/roguegpt` (`server.json`).
+
+### Changed
+- **The code moved into a `roguegpt` package** (`roguegpt/core.py`, `roguegpt/cli.py`, `roguegpt/mcp_server.py`, `roguegpt/generate_batch.py`, `roguegpt/prompt_engine.json`). An install previously put `core.py`, `cli.py`, `app.py`, `mcp_server.py` and `generate_batch.py` directly into site-packages, where a module of the same name from another package could shadow them. In a source checkout, `python3 cli.py`, `python3 mcp_server.py`, `python3 generate_batch.py` and `streamlit run app.py` work as before. Code that imported `core` directly now imports `from roguegpt import core`.
+- `prompt_engine.json` ships as package data inside `roguegpt/` instead of a data file under `<prefix>/share/roguegpt`.
+
 ## [1.4.3] - 2026-09-30
 
 Documentation release. No code, data or dependency changes.

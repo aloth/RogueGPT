@@ -39,7 +39,7 @@ pip install -e ".[dev,mcp,app]"
 ```
 
 The `[dev]` extra installs `pytest`, `pytest-cov`, and `pytest-mock`.
-The `[mcp]` extra installs the MCP SDK for `mcp_server.py`.
+The `[mcp]` extra installs the MCP SDK for the MCP server (`roguegpt-mcp`, code in `roguegpt/mcp_server.py`). All code lives in the `roguegpt/` package; `cli.py`, `mcp_server.py` and `generate_batch.py` in the repository root are thin shims that keep the documented `python3 cli.py` commands working.
 The `[app]` extra installs `streamlit` and `openai` for `app.py`.
 
 ### Configuration

@@ -4,7 +4,7 @@ from openai import APIConnectionError, RateLimitError, AuthenticationError, APIE
 import re
 import itertools
 
-import core
+from roguegpt import core
 
 __name__ = "RogueGPT"
 __version__ = core.__version__

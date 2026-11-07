@@ -46,7 +46,7 @@ def reset_config_cache():
     Reset core's in-process config cache between tests so each test that
     patches the config file path sees fresh data.
     """
-    import core as _core
+    from roguegpt import core as _core
     _core._config_cache = None
     yield
     _core._config_cache = None

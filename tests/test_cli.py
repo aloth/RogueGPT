@@ -12,7 +12,7 @@ from unittest.mock import patch
 
 # Ensure flat-layout root is importable
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
-import cli
+from roguegpt import cli
 
 
 # ---------------------------------------------------------------------------
@@ -74,14 +74,14 @@ class TestModelsCommand:
     def test_lists_models(self, monkeypatch):
         """models command should call core.get_valid_models and print each one."""
         model_list = ["openai_gpt-4o_2024-08-06", "anthropic_claude-3.5-sonnet"]
-        with patch("core.get_valid_models", return_value=model_list):
+        with patch("roguegpt.core.get_valid_models", return_value=model_list):
             out, _, code = run_cli(monkeypatch, "models")
         assert code == 0
         for m in model_list:
             assert m in out
 
     def test_empty_model_list(self, monkeypatch):
-        with patch("core.get_valid_models", return_value=[]):
+        with patch("roguegpt.core.get_valid_models", return_value=[]):
             out, _, code = run_cli(monkeypatch, "models")
         assert code == 0
         assert out.strip() == ""
@@ -94,7 +94,7 @@ class TestModelsCommand:
 class TestStatsCommand:
     def test_stats_json_output(self, monkeypatch):
         """stats outputs valid JSON with total/human/machine keys."""
-        with patch("core.count_fragments", side_effect=[100, 20, 80]):
+        with patch("roguegpt.core.count_fragments", side_effect=[100, 20, 80]):
             out, _, code = run_cli(monkeypatch, "stats")
         assert code == 0
         data = json.loads(out)
@@ -109,7 +109,7 @@ class TestIngestCommand:
     def test_ingest_machine_fragment(self, monkeypatch):
         """Ingest a Machine-origin fragment and check JSON output."""
         fake_result = {"fragment_id": "abc123", "warnings": []}
-        with patch("core.save_fragment", return_value=fake_result) as mock_save:
+        with patch("roguegpt.core.save_fragment", return_value=fake_result) as mock_save:
             out, _, code = run_cli(
                 monkeypatch,
                 "ingest",
@@ -126,7 +126,7 @@ class TestIngestCommand:
 
     def test_ingest_human_fragment(self, monkeypatch):
         fake_result = {"fragment_id": "def456", "warnings": []}
-        with patch("core.save_fragment", return_value=fake_result):
+        with patch("roguegpt.core.save_fragment", return_value=fake_result):
             out, _, code = run_cli(
                 monkeypatch,
                 "ingest",
@@ -142,8 +142,8 @@ class TestIngestCommand:
 
     def test_ingest_validation_error_exits_1(self, monkeypatch):
         """When core raises ValidationError, exit code should be 1."""
-        from core import ValidationError
-        with patch("core.save_fragment", side_effect=ValidationError("bad input")):
+        from roguegpt.core import ValidationError
+        with patch("roguegpt.core.save_fragment", side_effect=ValidationError("bad input")):
             _, err, code = run_cli(
                 monkeypatch,
                 "ingest",
@@ -186,7 +186,7 @@ class TestIngestCommand:
     def test_ingest_lenient_flag_passed(self, monkeypatch):
         """--lenient should cause strict_model=False to be passed to save_fragment."""
         fake_result = {"fragment_id": "ghi789", "warnings": ["unknown model"]}
-        with patch("core.save_fragment", return_value=fake_result) as mock_save:
+        with patch("roguegpt.core.save_fragment", return_value=fake_result) as mock_save:
             run_cli(
                 monkeypatch,
                 "ingest",
@@ -217,7 +217,7 @@ class TestRetrieveCommand:
             "MachineModel": "openai_gpt-4o_2024-08-06",
             "CreationDate": datetime(2024, 6, 1, tzinfo=timezone.utc),
         }
-        with patch("core.get_random_fragments", return_value=[frag]):
+        with patch("roguegpt.core.get_random_fragments", return_value=[frag]):
             out, _, code = run_cli(monkeypatch, "retrieve")
         assert code == 0
         data = json.loads(out)
@@ -225,7 +225,7 @@ class TestRetrieveCommand:
         assert data[0]["FragmentID"] == "aaa"
 
     def test_retrieve_n_param(self, monkeypatch):
-        with patch("core.get_random_fragments", return_value=[]) as mock_get:
+        with patch("roguegpt.core.get_random_fragments", return_value=[]) as mock_get:
             run_cli(monkeypatch, "retrieve", "--n", "5")
         mock_get.assert_called_once()
         assert mock_get.call_args[1].get("n") == 5 or mock_get.call_args[0][0] == 5
@@ -240,7 +240,7 @@ class TestRetrieveCommand:
             "IsFake": False,
             "CreationDate": datetime(2025, 1, 15, 12, 0, tzinfo=timezone.utc),
         }
-        with patch("core.get_random_fragments", return_value=[frag]):
+        with patch("roguegpt.core.get_random_fragments", return_value=[frag]):
             out, _, code = run_cli(monkeypatch, "retrieve")
         assert code == 0
         data = json.loads(out)
@@ -294,3 +294,12 @@ class TestIsFakeBooleanParsing:
         monkeypatch.setattr(cli.core, "get_random_fragments", fake_get_random_fragments)
         run_cli(monkeypatch, "retrieve", "--is-fake", "false")
         assert seen["is_fake"] is False
+
+
+def test_mcp_subcommand_is_registered():
+    """`roguegpt mcp` must exist: server.json starts the MCP server through it."""
+    import json as _json
+    from pathlib import Path
+    server = _json.loads((Path(__file__).resolve().parent.parent / "server.json").read_text())
+    assert server["packages"][0]["packageArguments"][0]["value"] == "mcp"
+    assert callable(cli.cmd_mcp)

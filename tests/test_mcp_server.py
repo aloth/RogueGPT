@@ -16,19 +16,19 @@ mcp_pkg = pytest.importorskip("mcp", reason="optional 'mcp' extra not installed"
 
 def test_mcp_server_imports():
     """The module must import; construction of FastMCP happens at import time."""
-    import mcp_server
+    from roguegpt import mcp_server
 
     assert mcp_server.mcp is not None
 
 
 def test_server_name_is_set():
-    import mcp_server
+    from roguegpt import mcp_server
 
     assert mcp_server.mcp.name == "RogueGPT"
 
 
 def test_expected_tools_are_defined():
-    import mcp_server
+    from roguegpt import mcp_server
 
     assert callable(mcp_server.ingest_fragment)
     assert callable(mcp_server.retrieve_fragments)

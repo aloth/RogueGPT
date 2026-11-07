@@ -13,7 +13,7 @@ import pytest
 
 # Ensure the flat-layout root is importable
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
-import core
+from roguegpt import core
 
 
 # ============================================================================
@@ -51,32 +51,32 @@ class TestLoadConfig:
 
 class TestGetValidModels:
     def test_returns_list_of_strings(self, config_file):
-        with patch("core.CONFIG_FILE", config_file):
+        with patch("roguegpt.core.CONFIG_FILE", config_file):
             models = core.get_valid_models()
         assert isinstance(models, list)
         assert all(isinstance(m, str) for m in models)
         assert len(models) > 0
 
     def test_contains_known_model(self, config_file):
-        with patch("core.CONFIG_FILE", config_file):
+        with patch("roguegpt.core.CONFIG_FILE", config_file):
             models = core.get_valid_models()
         assert "openai_gpt-4o_2024-08-06" in models
 
 
 class TestGetValidLanguages:
     def test_returns_sorted_list(self, config_file):
-        with patch("core.CONFIG_FILE", config_file):
+        with patch("roguegpt.core.CONFIG_FILE", config_file):
             langs = core.get_valid_languages()
         assert langs == sorted(langs)
 
     def test_contains_standard_codes(self, config_file):
-        with patch("core.CONFIG_FILE", config_file):
+        with patch("roguegpt.core.CONFIG_FILE", config_file):
             langs = core.get_valid_languages()
         for code in ("en", "de", "fr", "es"):
             assert code in langs
 
     def test_no_duplicates(self, config_file):
-        with patch("core.CONFIG_FILE", config_file):
+        with patch("roguegpt.core.CONFIG_FILE", config_file):
             langs = core.get_valid_languages()
         assert len(langs) == len(set(langs))
 
@@ -109,53 +109,53 @@ class TestValidateFragment:
     def test_missing_content_raises(self, config_file, valid_machine_fragment):
         frag = dict(valid_machine_fragment)
         del frag["Content"]
-        with patch("core.CONFIG_FILE", config_file):
+        with patch("roguegpt.core.CONFIG_FILE", config_file):
             with pytest.raises(core.ValidationError, match="Content"):
                 core.validate_fragment(frag)
 
     def test_empty_content_raises(self, config_file, valid_machine_fragment):
         frag = dict(valid_machine_fragment, Content="")
-        with patch("core.CONFIG_FILE", config_file):
+        with patch("roguegpt.core.CONFIG_FILE", config_file):
             with pytest.raises(core.ValidationError, match="Content"):
                 core.validate_fragment(frag)
 
     def test_invalid_origin_raises(self, config_file, valid_machine_fragment):
         frag = dict(valid_machine_fragment, Origin="Robot")
-        with patch("core.CONFIG_FILE", config_file):
+        with patch("roguegpt.core.CONFIG_FILE", config_file):
             with pytest.raises(core.ValidationError, match="Origin"):
                 core.validate_fragment(frag)
 
     def test_missing_origin_raises(self, config_file, valid_machine_fragment):
         frag = dict(valid_machine_fragment)
         del frag["Origin"]
-        with patch("core.CONFIG_FILE", config_file):
+        with patch("roguegpt.core.CONFIG_FILE", config_file):
             with pytest.raises(core.ValidationError, match="Origin"):
                 core.validate_fragment(frag)
 
     def test_machine_missing_model_raises(self, config_file, valid_machine_fragment):
         frag = dict(valid_machine_fragment)
         del frag["MachineModel"]
-        with patch("core.CONFIG_FILE", config_file):
+        with patch("roguegpt.core.CONFIG_FILE", config_file):
             with pytest.raises(core.ValidationError, match="MachineModel"):
                 core.validate_fragment(frag)
 
     def test_machine_empty_model_raises(self, config_file, valid_machine_fragment):
         frag = dict(valid_machine_fragment, MachineModel="")
-        with patch("core.CONFIG_FILE", config_file):
+        with patch("roguegpt.core.CONFIG_FILE", config_file):
             with pytest.raises(core.ValidationError, match="MachineModel"):
                 core.validate_fragment(frag)
 
     def test_human_missing_outlet_raises(self, config_file, valid_human_fragment):
         frag = dict(valid_human_fragment)
         del frag["HumanOutlet"]
-        with patch("core.CONFIG_FILE", config_file):
+        with patch("roguegpt.core.CONFIG_FILE", config_file):
             with pytest.raises(core.ValidationError, match="HumanOutlet"):
                 core.validate_fragment(frag)
 
     def test_missing_isfake_raises(self, config_file, valid_machine_fragment):
         frag = dict(valid_machine_fragment)
         del frag["IsFake"]
-        with patch("core.CONFIG_FILE", config_file):
+        with patch("roguegpt.core.CONFIG_FILE", config_file):
             with pytest.raises(core.ValidationError, match="IsFake"):
                 core.validate_fragment(frag)
 
@@ -163,46 +163,46 @@ class TestValidateFragment:
 
     def test_unknown_model_strict_raises(self, config_file, valid_machine_fragment):
         frag = dict(valid_machine_fragment, MachineModel="vendor_totally-unknown-3000")
-        with patch("core.CONFIG_FILE", config_file):
+        with patch("roguegpt.core.CONFIG_FILE", config_file):
             with pytest.raises(core.ValidationError, match="not in prompt_engine.json"):
                 core.validate_fragment(frag, strict_model=True)
 
     def test_unknown_model_lenient_returns_warning(self, config_file, valid_machine_fragment):
         frag = dict(valid_machine_fragment, MachineModel="vendor_totally-unknown-3000")
-        with patch("core.CONFIG_FILE", config_file):
+        with patch("roguegpt.core.CONFIG_FILE", config_file):
             warnings = core.validate_fragment(frag, strict_model=False)
         assert any("not in prompt_engine.json" in w for w in warnings)
 
     # --- Valid fragments (no errors, possible warnings) ---------------------
 
     def test_valid_machine_fragment_passes(self, config_file, valid_machine_fragment):
-        with patch("core.CONFIG_FILE", config_file):
+        with patch("roguegpt.core.CONFIG_FILE", config_file):
             warnings = core.validate_fragment(valid_machine_fragment)
         # warnings allowed (e.g., missing MachinePrompt), but no exception
         assert isinstance(warnings, list)
 
     def test_valid_human_fragment_passes(self, config_file, valid_human_fragment):
-        with patch("core.CONFIG_FILE", config_file):
+        with patch("roguegpt.core.CONFIG_FILE", config_file):
             warnings = core.validate_fragment(valid_human_fragment)
         assert isinstance(warnings, list)
 
     def test_human_missing_url_is_warning_not_error(self, config_file, valid_human_fragment):
         frag = dict(valid_human_fragment)
         frag.pop("HumanURL", None)
-        with patch("core.CONFIG_FILE", config_file):
+        with patch("roguegpt.core.CONFIG_FILE", config_file):
             warnings = core.validate_fragment(frag)
         assert any("HumanURL" in w for w in warnings)
 
     def test_machine_missing_prompt_is_warning(self, config_file, valid_machine_fragment):
         frag = dict(valid_machine_fragment)
         frag.pop("MachinePrompt", None)
-        with patch("core.CONFIG_FILE", config_file):
+        with patch("roguegpt.core.CONFIG_FILE", config_file):
             warnings = core.validate_fragment(frag)
         assert any("MachinePrompt" in w for w in warnings)
 
     def test_unknown_language_is_warning(self, config_file, valid_machine_fragment):
         frag = dict(valid_machine_fragment, ISOLanguage="xx")
-        with patch("core.CONFIG_FILE", config_file):
+        with patch("roguegpt.core.CONFIG_FILE", config_file):
             warnings = core.validate_fragment(frag)
         assert any("ISOLanguage" in w for w in warnings)
 
@@ -210,13 +210,13 @@ class TestValidateFragment:
         """ISOLanguage is optional — missing entirely should not raise."""
         frag = dict(valid_machine_fragment)
         frag.pop("ISOLanguage", None)
-        with patch("core.CONFIG_FILE", config_file):
+        with patch("roguegpt.core.CONFIG_FILE", config_file):
             # should not raise
             core.validate_fragment(frag)
 
     def test_returns_empty_list_for_perfect_fragment(self, config_file, valid_machine_fragment):
         """A fully-populated valid fragment should produce zero warnings."""
-        with patch("core.CONFIG_FILE", config_file):
+        with patch("roguegpt.core.CONFIG_FILE", config_file):
             warnings = core.validate_fragment(valid_machine_fragment)
         assert warnings == []
 
@@ -298,13 +298,13 @@ class TestNormalizeFragment:
 class TestSaveFragment:
     def test_save_and_returns_fragment_id(self, config_file, valid_machine_fragment):
         """Requires a live ROGUEGPT_MONGO_URI in the environment."""
-        with patch("core.CONFIG_FILE", config_file):
+        with patch("roguegpt.core.CONFIG_FILE", config_file):
             result = core.save_fragment(valid_machine_fragment)
         assert "fragment_id" in result
         assert isinstance(result["fragment_id"], str)
 
     def test_save_returns_warnings_list(self, config_file, valid_machine_fragment):
-        with patch("core.CONFIG_FILE", config_file):
+        with patch("roguegpt.core.CONFIG_FILE", config_file):
             result = core.save_fragment(valid_machine_fragment)
         assert "warnings" in result
         assert isinstance(result["warnings"], list)

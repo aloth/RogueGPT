@@ -191,7 +191,14 @@ Full references are in the accompanying paper.
 - Python 3.10+
 - MongoDB instance (local or Atlas)
 
-### Setup
+### From PyPI
+
+```bash
+pip install roguegpt            # command-line interface: roguegpt
+pip install "roguegpt[mcp]"     # plus the MCP server: roguegpt-mcp
+```
+
+### From source (needed for the Streamlit interface)
 
 ```bash
 git clone https://github.com/aloth/RogueGPT.git
@@ -228,7 +235,7 @@ Provides two modes: **Generator** (automated, template-driven generation across 
 
 ### Command-Line Interface
 
-The CLI enables scripted dataset operations without a browser:
+The CLI enables scripted dataset operations without a browser. Installed from PyPI, the command is `roguegpt`; in a source checkout, `python3 cli.py` does the same:
 
 ```bash
 # Dataset statistics
@@ -265,7 +272,22 @@ python3 cli.py ingest \
 RogueGPT exposes its data layer via the [Model Context Protocol](https://modelcontextprotocol.io/) for integration with AI agents and LLM tool-use workflows:
 
 ```bash
-python3 mcp_server.py
+roguegpt mcp                  # installed with pip install "roguegpt[mcp]" (or: roguegpt-mcp)
+python3 mcp_server.py         # from a source checkout
+```
+
+Claude Desktop, Cursor or any MCP client:
+
+```json
+{
+  "mcpServers": {
+    "roguegpt": {
+      "command": "uvx",
+      "args": ["--from", "roguegpt[mcp]", "roguegpt", "mcp"],
+      "env": { "ROGUEGPT_MONGO_URI": "mongodb+srv://..." }
+    }
+  }
+}
 ```
 
 **Tools:**
@@ -479,3 +501,5 @@ This research is supported by Frankfurt University of Applied Sciences and IMT A
 ## Disclaimer
 
 RogueGPT is an independent research project. The use of "GPT" in the project name follows *pars pro toto* convention, referring to the broader class of generative pre-trained transformer models. This project is not affiliated with or endorsed by OpenAI. All research adheres to established ethical guidelines for AI safety research.
+
+<!-- mcp-name: io.github.aloth/roguegpt -->

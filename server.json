@@ -1,0 +1,46 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.aloth/roguegpt",
+  "title": "RogueGPT",
+  "description": "Store and retrieve controlled AI news stimuli with full generation metadata for misinformation research",
+  "repository": {
+    "url": "https://github.com/aloth/RogueGPT",
+    "source": "github",
+    "id": "775684228"
+  },
+  "websiteUrl": "https://aloth.github.io/RogueGPT/",
+  "version": "1.5.0",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "registryBaseUrl": "https://pypi.org",
+      "identifier": "roguegpt",
+      "version": "1.5.0",
+      "runtimeHint": "uvx",
+      "runtimeArguments": [
+        {
+          "type": "named",
+          "name": "--from",
+          "value": "roguegpt[mcp]"
+        }
+      ],
+      "packageArguments": [
+        {
+          "type": "positional",
+          "value": "mcp"
+        }
+      ],
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "ROGUEGPT_MONGO_URI",
+          "description": "MongoDB connection string for the fragment store",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
