@@ -9,7 +9,7 @@ description = "A controlled stimulus generation framework for AI news authentici
 readme = "README.md"
 license = { text = "GPL-3.0-or-later" }
 authors = [
-    { name = "Alexander Loth", email = "alexander.loth@stud.fra-uas.de" },
+    { name = "Alexander Loth", email = "home@alexloth.com" },
     { name = "Martin Kappes" },
     { name = "Marc-Oliver Pahl", email = "marc-oliver.pahl@imt-atlantique.fr" },
 ]

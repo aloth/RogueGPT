@@ -3,16 +3,14 @@
 [![JOSS](https://joss.theoj.org/papers/10.21105/joss.11219/status.svg)](https://doi.org/10.21105/joss.11219)
 [![CI](https://github.com/aloth/RogueGPT/actions/workflows/ci.yml/badge.svg)](https://github.com/aloth/RogueGPT/actions/workflows/ci.yml)
 [![arXiv](https://img.shields.io/badge/arXiv-2601.21963-B31B1B.svg)](https://arxiv.org/abs/2601.21963)
-[![arXiv](https://img.shields.io/badge/arXiv-2601.22871-B31B1B.svg)](https://arxiv.org/abs/2601.22871)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18703137.svg)](https://doi.org/10.5281/zenodo.18703137)
-[![Status](https://img.shields.io/badge/status-active%20%26%20evolving-orange.svg)](https://github.com/aloth/RogueGPT)
 [![License](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![GitHub Stars](https://img.shields.io/github/stars/aloth/RogueGPT?style=social)](https://github.com/aloth/RogueGPT/stargazers)
-[![Mastodon](https://img.shields.io/badge/Mastodon-@xlth-6364FF?logo=mastodon&logoColor=white)](https://mastodon.social/@xlth)
 
 <p align="center">
   <img src="figures/roguegpt-ai-fake-news-generation-pipeline-wide.png" alt="RogueGPT - Controlled AI stimulus generation pipeline for fake news research" width="700">
 </p>
+
+> **If RogueGPT is useful for your research, please [cite the JOSS paper](#citation) and star the repository.** GitHub's "Cite this repository" button in the sidebar gives the reference in APA and BibTeX.
 
 ## What This Is
 
